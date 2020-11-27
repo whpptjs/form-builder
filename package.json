@@ -21,7 +21,9 @@
   },
   "dependencies": {
     "@whppt/nuxt": "^2.0.0-rc25",
-    "vuelidate": "^0.7.6"
+    "vuelidate": "^0.7.6",
+    "lodash": "^4.17.20",
+    "vuex": "^3.6.0"
   },
   "devDependencies": {
     "@babel/core": "latest",
@@ -29,22 +31,22 @@
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
     "@nuxtjs/eslint-config": "^5.0.0",
+    "@nuxtjs/eslint-module": "^3.0.1",
     "@nuxtjs/module-test-utils": "latest",
     "babel-eslint": "^10.1.0",
     "babel-jest": "latest",
-    "eslint": "^7.14.0",
+    "eslint": "latest",
     "eslint-config-prettier": "^6.15.0",
     "eslint-import-resolver-nuxt": "^1.0.1",
     "eslint-import-resolver-webpack": "^0.13.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-prettier": "^3.1.4",
-    "glob": "^7.1.6",
     "husky": "latest",
     "jest": "latest",
     "lint-staged": "^10.5.2",
     "nuxt-edge": "latest",
-    "prettier": "^2.2.0",
+    "prettier": "^2.1.2",
     "standard-version": "latest"
   },
   "publishConfig": {

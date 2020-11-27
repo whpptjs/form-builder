@@ -32,7 +32,7 @@
                 :is="getComponent(field.type)"
                 :field="field"
                 :show-error="(field.name && field.required && $v.formValues[field.name].$error) || false"
-                @fieldUpdated="updateField"
+                @field-updated="updateField"
               />
             </div>
           </div>
