@@ -8,7 +8,7 @@
         data-property="placeholder"
         :placeholder="field.placeholder"
         class="w-full py-4 font-medium px-4 text-lg"
-        @input="$emit('fieldUpdated', { name: field.name, value })"
+        @input="$emit('field-updated', { name: field.name, value })"
       />
     </div>
   </div>

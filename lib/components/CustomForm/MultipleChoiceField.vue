@@ -38,7 +38,7 @@ export default {
       forEach(this.values, (value, key) => {
         if (value) emailValues.push(key);
       });
-      this.$emit('fieldUpdated', { name: this.field.name, value: emailValues.join(', ') || 'None selected' });
+      this.$emit('field-updated', { name: this.field.name, value: emailValues.join(', ') || 'None selected' });
     },
   },
 };
