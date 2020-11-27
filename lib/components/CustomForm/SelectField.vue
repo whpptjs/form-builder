@@ -5,7 +5,7 @@
       <select
         v-model="value"
         class="w-full py-4 font-medium text-lg px-4"
-        @change="$emit('fieldUpdated', { name: field.name, value })"
+        @change="$emit('field-updated', { name: field.name, value })"
       >
         <option v-if="field.placeholder" value="" disabled selected>
           {{ field.placeholder }}

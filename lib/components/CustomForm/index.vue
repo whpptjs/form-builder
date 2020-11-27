@@ -37,6 +37,11 @@
             </div>
           </div>
         </div>
+        <div v-if="error" class="validationErrors">
+          {{ error.message }}
+          <div v-for="e in error.validationErrors" :key="e">{{ e }}</div>
+        </div>
+
         <div v-if="inEditor" v-custom-form="content" class="mb-4 italic">Edit form config</div>
         <div v-if="configError && inEditor">{{ configError }}</div>
         <div v-if="!configError" class="flex items-center">
@@ -67,6 +72,8 @@ export default {
   data: () => ({
     formValues: {},
     success: false,
+    loading: false,
+    error: undefined,
   }),
   computed: {
     ...mapGetters(['inEditor', 'theme']),
@@ -124,23 +131,37 @@ export default {
       this.success = false;
     },
     submit() {
-      if (this.inEditor) return;
-      this.success = false;
+      // if (this.inEditor) return;
+      // this.success = false;
       this.$v.$touch();
       if (this.$v.$invalid) return;
-      this.success = true;
-      // return this.$axios
-      //   .$post('/api/contactForm/submitCustomForm', {
-      //     formName: this.content.formName,
-      //     recipientName: this.content.recipientName,
-      //     recipientEmail: this.content.recipientEmail,
-      //     ccs: this.content.ccs,
-      //     subject: this.content.subject,
-      //     formValues: this.formValues,
-      //   })
-      //   .then(() => {
-      //     this.success = true;
-      //   });
+
+      this.error = undefined;
+      this.loading = true;
+      this.success = false;
+      this.$axios
+        .$post('/api/forms/submit', {
+          settings: {
+            name: this.content.formName,
+            subject: this.content.subject,
+            fields: this.content.fields,
+            recipient: {
+              name: this.content.recipientName,
+              email: this.content.recipientEmail,
+            },
+            ccs: this.content.ccs,
+          },
+          form: this.formValues,
+        })
+        .then(() => {
+          this.loading = false;
+          this.success = true;
+        })
+        .catch(err => {
+          this.loading = false;
+          this.success = false;
+          this.error = err;
+        });
     },
   },
   validations() {

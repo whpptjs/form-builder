@@ -15,6 +15,7 @@
   "plugins": ["prettier", "import"],
   "rules": {
     "nuxt/no-cjs-in-config": "off",
+    "vue/no-v-html": "off",
     "import/no-unresolved": ["error", { "commonjs": true }]
   },
   "overrides": [{ "files": ["**/*.js", "**/*.vue"] }],

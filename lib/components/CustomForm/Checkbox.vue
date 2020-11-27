@@ -29,7 +29,7 @@ export default {
     check() {
       if (!this.value) this.value = true;
       else this.value = false;
-      this.$emit('fieldUpdated', { name: this.field.name, value: this.value });
+      this.$emit('field-updated', { name: this.field.name, value: this.value });
     },
   },
 };

@@ -42,7 +42,7 @@
       <div class="pl-4">Half-Width</div>
     </div>
     <div v-if="selectedContent.type === 'select' || selectedContent.type === 'multipleChoice'">
-      <text-list-editor field="options" label="Select field options" />
+      <!-- <text-list-editor field="options" label="Select field options" /> -->
     </div>
   </div>
 </template>
@@ -53,11 +53,12 @@ import { mapState, mapActions } from 'vuex';
 import WhpptTextInput from '@whppt/nuxt/lib/components/ui/Input.vue';
 import WhpptSelect from '@whppt/nuxt/lib/components/ui/Select.vue';
 
-import TextListEditor from '~~/editors/TextList';
+// import TextListEditor from '~~/editors/TextList';
 
 export default {
   name: 'FormFieldEditor',
-  components: { WhpptTextInput, WhpptSelect, TextListEditor },
+  components: { WhpptTextInput, WhpptSelect },
+  // components: { WhpptTextInput, WhpptSelect, TextListEditor },
   data() {
     return {
       fieldTypes: [
