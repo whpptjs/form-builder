@@ -38,6 +38,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import { without } from 'lodash';
 import { mapState, mapActions } from 'vuex';

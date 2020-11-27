@@ -17,6 +17,7 @@
 
 <script>
 import FieldLabel from './FieldLabel';
+
 export default {
   name: 'FormTextArea',
   components: { FieldLabel },
