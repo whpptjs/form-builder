@@ -1,0 +1,45 @@
+<template>
+  <div>
+    <div v-form-field="field" class="mb-8">
+      <field-label :field="field" :show-error="showError"></field-label>
+      <div v-for="(option, index) in field.options" :key="index" class="mb-4">
+        <button class="flex items-center" @click="check(option)">
+          <div class="border border-white p-2 bg-white flex">
+            <icon v-if="values[option]" icon="Check" class="w-4 h-4" :style="{ color: theme.secondary }" />
+            <div v-else class="w-4 h-4" />
+          </div>
+          <div class="ml-4">{{ option }}</div>
+        </button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import { mapGetters } from 'vuex';
+import { forEach } from 'lodash';
+
+import FieldLabel from './FieldLabel';
+export default {
+  name: 'FormMultipleChoice',
+  components: { FieldLabel },
+  props: { field: { type: Object, default: () => ({}) }, showError: { type: Boolean, default: false } },
+  data: () => ({
+    values: {},
+  }),
+  computed: {
+    ...mapGetters(['theme']),
+  },
+  methods: {
+    check(option) {
+      if (!this.values[option]) this.$set(this.values, option, true);
+      else this.$set(this.values, option, false);
+      const emailValues = [];
+      forEach(this.values, (value, key) => {
+        if (value) emailValues.push(key);
+      });
+      this.$emit('fieldUpdated', { name: this.field.name, value: emailValues.join(', ') || 'None selected' });
+    },
+  },
+};
+</script>
