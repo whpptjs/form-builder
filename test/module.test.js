@@ -1,18 +1,18 @@
-const { setup, loadConfig, get } = require('@nuxtjs/module-test-utils')
+const { setup, loadConfig, get } = require('@nuxtjs/module-test-utils');
 
 describe('module', () => {
-  let nuxt
+  let nuxt;
 
   beforeAll(async () => {
-    ({ nuxt } = (await setup(loadConfig(__dirname, '../../example'))))
-  }, 60000)
+    ({ nuxt } = await setup(loadConfig(__dirname, '../../example')));
+  }, 60000);
 
   afterAll(async () => {
-    await nuxt.close()
-  })
+    await nuxt.close();
+  });
 
   test('render', async () => {
-    const html = await get('/')
-    expect(html).toContain('Works!')
-  })
-})
+    const html = await get('/');
+    expect(html).toContain('Works!');
+  });
+});
