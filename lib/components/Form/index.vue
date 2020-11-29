@@ -66,8 +66,16 @@ import { forEach, uniqBy, find } from 'lodash';
 import { mapGetters, mapActions } from 'vuex';
 import { required, email } from 'vuelidate/lib/validators';
 
+import FormCheckbox from './Fields/Checkbox';
+import FormEmailField from './Fields/EmailField';
+import FormMultipleChoiceField from './Fields/MultipleChoiceField';
+import FormSelectField from './Fields/SelectField';
+import FormTextArea from './Fields/TextArea';
+import FormTextField from './Fields/TextField';
+
 export default {
-  name: 'CustomForm',
+  name: 'WhpptFormsForm',
+  components: { FormCheckbox, FormEmailField, FormMultipleChoiceField, FormSelectField, FormTextArea, FormTextField },
   props: { content: { type: Object, default: () => ({}) } },
   data: () => ({
     formValues: {},
