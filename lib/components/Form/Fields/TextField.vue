@@ -1,16 +1,13 @@
 <template>
-  <div>
-    <div v-form-field="field" class="mb-8">
-      <field-label :field="field" :show-error="showError"></field-label>
-      <input
-        v-model="value"
-        v-whppt-text="field"
-        data-property="placeholder"
-        :placeholder="field.placeholder"
-        class="w-full py-4 font-medium px-4 text-lg"
-        @input="$emit('field-updated', { name: field.name, value })"
-      />
-    </div>
+  <div v-form-field="field" class="whppt-form-text">
+    <field-label :field="field" :show-error="showError"></field-label>
+    <input
+      v-model="value"
+      v-whppt-text="field"
+      data-property="placeholder"
+      :placeholder="field.placeholder"
+      @input="$emit('field-updated', { name: field.name, value })"
+    />
   </div>
 </template>
 
@@ -25,3 +22,16 @@ export default {
   }),
 };
 </script>
+
+<style>
+.whppt-form-text {
+  margin-bottom: 2rem;
+}
+
+.whppt-form-text input {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+</style>

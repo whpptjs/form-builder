@@ -1,13 +1,11 @@
 <template>
-  <div>
-    <div class="flex justify-between">
-      <div class="text-gray-600 font-light mb-4">
-        {{ label }}
-      </div>
-      <span v-if="showError" class="text-xs text-red-500 text-right">
-        {{ errorMessage || 'This field is required' }}
-      </span>
+  <div class="whppt-form-label">
+    <div class="whppt-form-label-text">
+      {{ label }}
     </div>
+    <span v-if="showError" class="whppt-form-label-error">
+      {{ errorMessage || 'This field is required' }}
+    </span>
   </div>
 </template>
 
@@ -28,3 +26,26 @@ export default {
   },
 };
 </script>
+
+<style>
+.whppt-form-label {
+  display: flex;
+  justify-content: space-between;
+}
+
+.whppt-form-label-text {
+  --text-opacity: 1;
+  color: #718096;
+  color: rgba(113, 128, 150, var(--text-opacity));
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+
+.whppt-form-label-error {
+  --text-opacity: 1;
+  color: #f56565;
+  color: rgba(245, 101, 101, var(--text-opacity));
+  text-align: right;
+  font-size: 0.65rem;
+}
+</style>

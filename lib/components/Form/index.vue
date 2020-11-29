@@ -1,29 +1,29 @@
 <template>
   <div>
-    <div class="container flex">
-      <div class="hidden lg:block w-1/12" />
-      <div class="w-full lg:w-10/12">
+    <div class="whppt-form" :class="computedClasses">
+      <div class="whppt-form__gutter" />
+      <div class="whppt-form__content">
         <div
           v-if="(content.title && content.title !== '<p></p>') || inEditor"
           v-whppt-formatted-text="content"
           data-property="title"
-          class="text-lg lg:text-xl mb-8"
+          class="whppt-form__title"
           v-html="content.title && content.title !== '<p></p>' ? content.title : 'Form Title'"
         />
         <div
           v-whppt-list="{ data: content, addNew }"
           data-property="fields"
-          :class="{ 'py-4': inEditor }"
-          class="flex flex-wrap justify-between"
+          :class="{ 'in-editor': inEditor }"
+          class="whppt-form__fields"
         >
-          <div v-if="!content.fields.length" class="italic">Add fields</div>
+          <div v-if="!content.fields.length" class="whppt-form__field-config">Add fields</div>
           <div
             v-for="(field, index) in content.fields"
             :key="index"
             :class="
               field.halfWidth || field.type === 'checkbox' || field.type === 'multipleChoice'
-                ? 'w-full lg:w-4.5/10'
-                : 'w-full'
+                ? 'whppt-form__field-width-half'
+                : 'whppt-form__field-width-full'
             "
           >
             <div>
@@ -37,26 +37,35 @@
             </div>
           </div>
         </div>
-        <div v-if="error" class="validationErrors">
+        <div v-if="error" class="whppt-form__validation">
           {{ error.message }}
           <div v-for="e in error.validationErrors" :key="e">{{ e }}</div>
         </div>
 
-        <div v-if="inEditor" v-custom-form="content" class="mb-4 italic">Edit form config</div>
+        <div v-if="inEditor" v-custom-form="content" class="whppt-form__form-config">Edit form config</div>
         <div v-if="configError && inEditor">{{ configError }}</div>
-        <div v-if="!configError" class="flex items-center">
-          <div v-whppt-text="content" data-property="primaryButtonText" class="cursor-pointer" @click="submit">
-            <div v-if="success" :style="{ color: theme.secondary }">Success!</div>
-            <primary-cta
-              v-else
-              :disable-editing="true"
-              :to="{ text: content.primaryButtonText || 'Send enquiry' }"
-            ></primary-cta>
-          </div>
-          <secondary-cta v-if="content.secondaryLink.href || inEditor" :to="content.secondaryLink" class="ml-8" />
+        <div v-if="!configError" class="whppt-form__actions flex items-center">
+          <button
+            v-whppt-text="content"
+            data-property="primaryButtonText"
+            class="whppt-form__primary"
+            :class="{ 'in-editor': inEditor }"
+            @click="submit"
+          >
+            <div v-if="success">Success!</div>
+            <div v-else>{{ content.primaryButtonText || 'Send enquiry' }}</div>
+          </button>
+          <whppt-link
+            v-if="content.secondaryLink.href || inEditor"
+            v-whppt-link="content.secondaryLink"
+            :to="content.secondaryLink"
+            class="whppt-form__secondary ml-8"
+          >
+            {{ content.secondaryLink.text || 'Secondary Link' }}
+          </whppt-link>
         </div>
       </div>
-      <div class="hidden lg:block w-1/12" />
+      <div class="whppt-form__gutter" />
     </div>
   </div>
 </template>
@@ -76,7 +85,11 @@ import FormTextField from './Fields/TextField';
 export default {
   name: 'WhpptFormsForm',
   components: { FormCheckbox, FormEmailField, FormMultipleChoiceField, FormSelectField, FormTextArea, FormTextField },
-  props: { content: { type: Object, default: () => ({}) } },
+  props: {
+    content: { type: Object, default: () => ({}) },
+    container: { type: Boolean, default: true },
+    customClass: { type: String, default: '' },
+  },
   data: () => ({
     formValues: {},
     success: false,
@@ -85,6 +98,11 @@ export default {
   }),
   computed: {
     ...mapGetters(['inEditor', 'theme']),
+    computedClasses() {
+      const _classes = { container: this.container };
+      if (this.customClass) _classes[this.customClass] = this.customClass;
+      return _classes;
+    },
     configError() {
       if (!this.content.formName) return 'Form name missing';
       if (!this.content.recipientEmail) return 'Recipient email missing';
@@ -150,13 +168,9 @@ export default {
       this.$axios
         .$post('/api/forms/submit', {
           settings: {
-            name: this.content.formName,
             subject: this.content.subject,
             fields: this.content.fields,
-            recipient: {
-              name: this.content.recipientName,
-              email: this.content.recipientEmail,
-            },
+            recipient: this.content.recipient,
             ccs: this.content.ccs,
           },
           form: this.formValues,
@@ -189,3 +203,87 @@ export default {
   },
 };
 </script>
+
+<style>
+.whppt-form {
+  display: flex;
+}
+
+.whppt-form__gutter {
+  display: none;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  width: 8.333333%;
+}
+
+.whppt-form__content {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  width: 100%;
+}
+
+.whppt-form__title {
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+}
+
+.whppt-form__validation {
+  color: red;
+}
+
+.whppt-form__form-config {
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.whppt-form__actions {
+  align-items: center;
+  display: flex;
+}
+
+.whppt-form__primary.in-editor {
+  cursor: pointer;
+}
+
+.whppt-form__secondary {
+  margin-left: 2rem;
+}
+
+.whppt-form__fields {
+  justify-content: space-between;
+  flex-wrap: wrap;
+  display: flex;
+}
+
+.whppt-form__fields.in-editor {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.whppt-form__field-config {
+  font-style: italic;
+}
+
+.whppt-form__field-width-half {
+  width: 100%;
+}
+
+.whppt-form__field-width-full {
+  width: 100%;
+}
+
+@media only screen and (min-width: 1024px) {
+  .whppt-form__gutter {
+    display: block;
+  }
+  .whppt-form__content {
+    width: 83.333333%;
+  }
+  .whppt-form__title {
+    font-size: 1.25rem;
+  }
+  .whppt-form__field-width-half {
+    width: 45%;
+  }
+}
+</style>

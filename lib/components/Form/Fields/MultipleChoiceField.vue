@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-form-field="field" class="mb-8">
+    <div v-form-field="field" class="whppt-form-multiple-choice">
       <field-label :field="field" :show-error="showError"></field-label>
       <div v-for="(option, index) in field.options" :key="index" class="mb-4">
         <button class="flex items-center" @click="check(option)">
@@ -18,8 +18,11 @@
 <script>
 import { mapGetters } from 'vuex';
 import { forEach } from 'lodash';
-
 import FieldLabel from './FieldLabel';
+
+// TODO: Replace tailwind classes
+// TODO: Figure out icon
+
 export default {
   name: 'FormMultipleChoice',
   components: { FieldLabel },
@@ -43,3 +46,16 @@ export default {
   },
 };
 </script>
+
+<style>
+.whppt-form-multiple-choice {
+  margin-bottom: 2rem;
+}
+
+/* .whppt-form-multiple-choice input {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+} */
+</style>

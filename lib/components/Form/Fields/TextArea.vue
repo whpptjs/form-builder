@@ -1,17 +1,14 @@
 <template>
-  <div>
-    <div v-form-field="field" class="mb-8">
-      <field-label :field="field" :show-error="showError"></field-label>
-      <textarea
-        v-model="value"
-        v-whppt-text="field"
-        data-property="placeholder"
-        :placeholder="field.placeholder"
-        rows="5"
-        class="w-full py-4 font-medium text-lg px-4"
-        @input="$emit('field-updated', { name: field.name, value })"
-      />
-    </div>
+  <div v-form-field="field" class="whppt-form-textarea">
+    <field-label :field="field" :show-error="showError"></field-label>
+    <textarea
+      v-model="value"
+      v-whppt-text="field"
+      data-property="placeholder"
+      :placeholder="field.placeholder"
+      rows="5"
+      @input="$emit('field-updated', { name: field.name, value })"
+    />
   </div>
 </template>
 
@@ -27,3 +24,16 @@ export default {
   }),
 };
 </script>
+
+<style>
+.whppt-form-textarea {
+  margin-bottom: 2rem;
+}
+
+.whppt-form-textarea textarea {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+</style>

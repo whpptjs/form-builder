@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-form-field="field" class="mb-8">
+    <div v-form-field="field" class="whppt-form-email">
       <field-label
         :field="field"
         :show-error="showError"
@@ -11,7 +11,6 @@
         v-whppt-text="field"
         data-property="placeholder"
         :placeholder="field.placeholder"
-        class="w-full py-4 font-medium text-lg px-4"
         @input="$emit('field-updated', { name: field.name, value })"
       />
     </div>
@@ -20,6 +19,7 @@
 
 <script>
 import FieldLabel from './FieldLabel';
+
 export default {
   name: 'EmailField',
   components: { FieldLabel },
@@ -29,3 +29,16 @@ export default {
   }),
 };
 </script>
+
+<style>
+.whppt-form-email {
+  margin-bottom: 2rem;
+}
+
+.whppt-form-email input {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+</style>

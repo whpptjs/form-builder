@@ -53,6 +53,8 @@ import { mapState, mapActions } from 'vuex';
 import WhpptTextInput from '@whppt/nuxt/lib/components/ui/Input.vue';
 import WhpptSelect from '@whppt/nuxt/lib/components/ui/Select.vue';
 
+// TODO: Replace tailwind classes
+
 export default {
   name: 'FormFieldEditor',
   components: { WhpptTextInput, WhpptSelect },

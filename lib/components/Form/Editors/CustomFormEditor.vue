@@ -1,22 +1,10 @@
 <template>
   <div>
     <whppt-text-input
-      id="formName"
-      :value="selectedContent.formName"
-      label="Form Name"
-      @input="updateValue($event, 'formName')"
-    />
-    <whppt-text-input
-      id="recipientName"
-      :value="selectedContent.recipientName"
-      label="Recipient Name"
-      @input="updateValue($event, 'recipientName')"
-    />
-    <whppt-text-input
-      id="recipientEmail"
-      :value="selectedContent.recipientEmail"
-      label="Recipient Email"
-      @input="updateValue($event, 'recipientEmail')"
+      id="recipient"
+      :value="selectedContent.recipient"
+      label="Recipient"
+      @input="updateValue($event, 'recipient')"
     />
     <whppt-text-input
       id="subject"

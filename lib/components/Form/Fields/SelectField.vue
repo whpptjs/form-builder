@@ -1,10 +1,9 @@
 <template>
   <div>
-    <div v-form-field="field" class="mb-8">
+    <div v-form-field="field" class="whppt-form-select">
       <field-label :field="field" :show-error="showError"></field-label>
       <select
         v-model="value"
-        class="w-full py-4 font-medium text-lg px-4"
         @change="$emit('field-updated', { name: field.name, value })"
       >
         <option v-if="field.placeholder" value="" disabled selected>
@@ -33,3 +32,16 @@ export default {
   },
 };
 </script>
+
+<style>
+.whppt-form-select {
+  margin-bottom: 2rem;
+}
+
+.whppt-form-select select {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+</style>

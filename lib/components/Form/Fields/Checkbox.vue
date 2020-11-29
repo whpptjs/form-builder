@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div v-form-field="field" class="mb-8">
+    <div v-form-field="field" class="whppt-form-checkbox">
       <field-label :field="field" :show-error="showError"></field-label>
       <button class="border border-white p-2 bg-white flex" @click="check">
-        <icon v-if="value" icon="Check" class="w-4 h-4" :style="{ color: theme.secondary }" />
+        <icon v-if="value" icon="Check" class="w-4 h-4" />
         <div v-else class="w-4 h-4" />
       </button>
     </div>
@@ -12,6 +12,9 @@
 
 <script>
 import FieldLabel from './FieldLabel';
+
+// TODO: Replace tailwind classes
+// TODO: Figure out icon
 
 export default {
   name: 'FormCheckbox',
@@ -28,3 +31,16 @@ export default {
   },
 };
 </script>
+
+<style>
+.whppt-form-checkbox {
+  margin-bottom: 2rem;
+}
+
+/* .whppt-form-checkbox input {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+} */
+</style>
