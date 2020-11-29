@@ -36,6 +36,8 @@ import WhpptButton from '@whppt/nuxt/lib/components/ui/Button.vue';
 import Add from '@whppt/nuxt/lib/components/icons/Add';
 import Trash from '@whppt/nuxt/lib/components/icons/Trash';
 
+// TODO: Replace tailwind classes
+
 export default {
   name: 'CustomFormEditor',
   components: { WhpptTextInput, WhpptButton, Add, Trash },

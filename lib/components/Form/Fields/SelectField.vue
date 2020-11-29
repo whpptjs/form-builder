@@ -2,10 +2,7 @@
   <div>
     <div v-form-field="field" class="whppt-form-select">
       <field-label :field="field" :show-error="showError"></field-label>
-      <select
-        v-model="value"
-        @change="$emit('field-updated', { name: field.name, value })"
-      >
+      <select v-model="value" @change="$emit('field-updated', { name: field.name, value })">
         <option v-if="field.placeholder" value="" disabled selected>
           {{ field.placeholder }}
         </option>
