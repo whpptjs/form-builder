@@ -1,6 +1,12 @@
 <template>
   <div>
     <whppt-text-input
+      :id="`${$options._scopeId}-whppt-identifier`"
+      :value="selectedContent.identifier"
+      label="Identifier"
+      @input="updateValue($event, 'identifier')"
+    />
+    <whppt-text-input
       id="recipient"
       :value="selectedContent.recipient"
       label="Recipient"
@@ -30,13 +36,10 @@
 <script>
 import { without } from 'lodash';
 import { mapState, mapActions } from 'vuex';
-
 import WhpptTextInput from '@whppt/nuxt/lib/components/ui/Input.vue';
 import WhpptButton from '@whppt/nuxt/lib/components/ui/Button.vue';
 import Add from '@whppt/nuxt/lib/components/icons/Add';
 import Trash from '@whppt/nuxt/lib/components/icons/Trash';
-
-// TODO: Replace tailwind classes
 
 export default {
   name: 'CustomFormEditor',
@@ -64,7 +67,6 @@ export default {
     removeItem(address) {
       if (window.confirm('Are you sure?')) {
         const removed = without(this.selectedContent.ccs, address);
-
         this.setSelectedComponentState({ value: removed, path: 'ccs' });
       }
     },

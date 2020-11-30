@@ -41,9 +41,9 @@
       </div>
       <div class="pl-4">Half-Width</div>
     </div>
-    <!--    <div v-if="selectedContent.type === 'select' || selectedContent.type === 'multipleChoice'">-->
-    <!--      <text-list-editor field="options" label="Select field options" />-->
-    <!--    </div>-->
+    <div v-if="selectedContent.type === 'select' || selectedContent.type === 'multipleChoice'">
+      <text-list-editor field="options" label="Select field options" />
+    </div>
   </div>
 </template>
 <script>
@@ -52,12 +52,11 @@ import { mapState, mapActions } from 'vuex';
 
 import WhpptTextInput from '@whppt/nuxt/lib/components/ui/Input.vue';
 import WhpptSelect from '@whppt/nuxt/lib/components/ui/Select.vue';
-
-// TODO: Replace tailwind classes
+import TextListEditor from './TextListEditor';
 
 export default {
   name: 'FormFieldEditor',
-  components: { WhpptTextInput, WhpptSelect },
+  components: { WhpptTextInput, WhpptSelect, TextListEditor },
   data() {
     return {
       fieldTypes: [

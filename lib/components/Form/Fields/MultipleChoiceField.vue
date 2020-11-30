@@ -5,7 +5,7 @@
       <div v-for="(option, index) in field.options" :key="index" class="mb-4">
         <button class="flex items-center" @click="check(option)">
           <div class="border border-white p-2 bg-white flex">
-            <icon v-if="values[option]" icon="Check" class="w-4 h-4" :style="{ color: theme.secondary }" />
+            <icon v-if="values[option]" icon="Check" class="w-4 h-4" />
             <div v-else class="w-4 h-4" />
           </div>
           <div class="ml-4">{{ option }}</div>
@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import { forEach } from 'lodash';
 import FieldLabel from './FieldLabel';
 
@@ -24,15 +23,12 @@ import FieldLabel from './FieldLabel';
 // TODO: Figure out icon
 
 export default {
-  name: 'FormMultipleChoice',
+  name: 'FormMultipleChoiceField',
   components: { FieldLabel },
   props: { field: { type: Object, default: () => ({}) }, showError: { type: Boolean, default: false } },
   data: () => ({
     values: {},
   }),
-  computed: {
-    ...mapGetters(['theme']),
-  },
   methods: {
     check(option) {
       if (!this.values[option]) this.$set(this.values, option, true);

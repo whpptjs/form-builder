@@ -52,8 +52,8 @@
             :class="{ 'in-editor': inEditor }"
             @click="submit"
           >
-            <div v-if="success">Success!</div>
-            <div v-else>{{ content.primaryButtonText || 'Send enquiry' }}</div>
+            <span v-if="success">Success!</span>
+            <span v-else>{{ content.primaryButtonText || 'Send enquiry' }}</span>
           </button>
           <whppt-link
             v-if="content.secondaryLink.href || inEditor"
@@ -72,7 +72,7 @@
 
 <script>
 import { forEach, uniqBy, find } from 'lodash';
-import { mapGetters, mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 import { required, email } from 'vuelidate/lib/validators';
 
 import FormCheckbox from './Fields/Checkbox';
@@ -97,16 +97,20 @@ export default {
     error: undefined,
   }),
   computed: {
-    ...mapGetters(['inEditor', 'theme']),
+    ...mapState('whppt-nuxt/editor', ['activeMenuItem']),
+    inEditor() {
+      return this.activeMenuItem === 'select';
+    },
     computedClasses() {
       const _classes = { container: this.container };
+
       if (this.customClass) _classes[this.customClass] = this.customClass;
+
       return _classes;
     },
     configError() {
-      if (!this.content.formName) return 'Form name missing';
-      if (!this.content.recipientEmail) return 'Recipient email missing';
-      if (!this.content.recipientName) return 'Recipient name missing';
+      if (!this.content.identifier) return 'Identifier missing';
+      if (!this.content.recipient) return 'Recipient missing';
       if (!this.content.subject) return 'Subject missing';
 
       if (find(this.content.fields, f => !f.name)) return 'All fields need names configured';
@@ -146,7 +150,7 @@ export default {
         case 'email':
           return 'FormEmailField';
         case 'multipleChoice':
-          return 'FormMultipleChoice';
+          return 'FormMultipleChoiceField';
         default:
           return 'FormTextField';
       }
@@ -157,14 +161,13 @@ export default {
       this.success = false;
     },
     submit() {
-      // if (this.inEditor) return;
-      // this.success = false;
       this.$v.$touch();
       if (this.$v.$invalid) return;
 
       this.error = undefined;
       this.loading = true;
       this.success = false;
+
       this.$axios
         .$post('/api/forms/submit', {
           settings: {
@@ -188,6 +191,7 @@ export default {
   },
   validations() {
     const validations = { formValues: {} };
+
     forEach(this.content.fields, field => {
       const restrictions = {};
       if (field.required && field.type !== 'checkbox') restrictions.required = required;
@@ -199,6 +203,7 @@ export default {
 
       if (Object.keys(restrictions).length) validations.formValues[field.name] = restrictions;
     });
+
     return validations;
   },
 };
@@ -241,12 +246,41 @@ export default {
   display: flex;
 }
 
+.whppt-form__primary {
+  font-weight: 500;
+  padding: 1rem 2.5rem;
+  background-color: limegreen;
+  border: 2px solid limegreen;
+  transition: background-color 0.15s ease, border 0.15s ease, color 0.15s ease;
+  will-change: background-color, border, color;
+  color: white;
+}
+
+.whppt-form__primary:hover,
+.whppt-form__primary:focus {
+  transition: background-color 0.15s ease, border 0.15s ease, color 0.15s ease;
+  will-change: background-color, border, color;
+  background-color: white;
+  color: limegreen;
+}
+
 .whppt-form__primary.in-editor {
   cursor: pointer;
 }
 
 .whppt-form__secondary {
+  font-weight: 500;
+  padding: 1rem 2.5rem;
   margin-left: 2rem;
+  background-color: transparent;
+  transition: color 0.15s ease;
+  will-change: color;
+  color: inherit;
+}
+
+.whppt-form__secondary:hover,
+.whppt-form__secondary:focus {
+  color: dodgerblue;
 }
 
 .whppt-form__fields {
