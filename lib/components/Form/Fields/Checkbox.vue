@@ -2,10 +2,7 @@
   <div>
     <div v-form-field="field" class="whppt-form-checkbox">
       <field-label :field="field" :show-error="showError"></field-label>
-      <button class="border border-white p-2 bg-white flex" @click="check">
-        <icon v-if="value" icon="Check" class="w-4 h-4" />
-        <div v-else class="w-4 h-4" />
-      </button>
+      <input :id="field" type="checkbox" :checked="value" @change="check" />
     </div>
   </div>
 </template>

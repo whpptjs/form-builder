@@ -19,27 +19,21 @@
       label="Placeholder"
       @input="updateValue($event, 'placeholder')"
     />
-    <div
-      v-if="selectedContent.type !== 'multipleChoice'"
-      class="mt-4 flex items-center"
-      @click="updateBoolean('required')"
-    >
-      <div class="border border-white p-2 flex">
-        <icon v-if="selectedContent.required" icon="Check" class="w-4 h-4" />
-        <div v-else class="w-4 h-4" />
-      </div>
-      <div class="pl-4">Required</div>
+    <div class="whppt-checkbox__wrapper">
+      <whppt-checkbox
+        :id="`${$options._scopeId}-required-checkbox`"
+        v-model="selectedContent.required"
+        label="Required"
+        @click="updateBoolean('required')"
+      ></whppt-checkbox>
     </div>
-    <div
-      v-if="selectedContent.type !== 'checkbox' && selectedComponent.type !== 'multipleChoice'"
-      class="mt-4 flex items-center"
-      @click="updateBoolean('halfWidth')"
-    >
-      <div class="border border-white p-2 flex">
-        <icon v-if="selectedContent.halfWidth" icon="Check" class="w-4 h-4" />
-        <div v-else class="w-4 h-4" />
-      </div>
-      <div class="pl-4">Half-Width</div>
+    <div class="whppt-checkbox__wrapper">
+      <whppt-checkbox
+        :id="`${$options._scopeId}-half-width-checkbox`"
+        v-model="selectedContent.halfWidth"
+        label="Half Width"
+        @click="updateBoolean('halfWidth')"
+      ></whppt-checkbox>
     </div>
     <div v-if="selectedContent.type === 'select' || selectedContent.type === 'multipleChoice'">
       <text-list-editor field="options" label="Select field options" />
@@ -52,11 +46,12 @@ import { mapState, mapActions } from 'vuex';
 
 import WhpptTextInput from '@whppt/nuxt/lib/components/ui/Input.vue';
 import WhpptSelect from '@whppt/nuxt/lib/components/ui/Select.vue';
+import WhpptCheckbox from '@whppt/nuxt/lib/components/ui/Checkbox.vue';
 import TextListEditor from './TextListEditor';
 
 export default {
   name: 'FormFieldEditor',
-  components: { WhpptTextInput, WhpptSelect, TextListEditor },
+  components: { WhpptTextInput, WhpptSelect, WhpptCheckbox, TextListEditor },
   data() {
     return {
       fieldTypes: [
@@ -93,3 +88,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.whppt-checkbox__wrapper {
+  margin-top: 1rem;
+}
+</style>
