@@ -6,7 +6,7 @@
     </div>
     <div v-for="(item, index) in listValues" :key="index" class="mb-2">
       <div class="flex justify-between items-center">
-        <whppt-text-input id="subject" :value="item" @input="updateItem($event, index)" />
+        <whppt-text-input :id="`field-${index}`" :value="item" @input="updateItem($event, index)" />
         <div class="flex">
           <div class="ml-1">
             <whppt-button @click="moveUp(item, index)"><arrow-up /></whppt-button>
