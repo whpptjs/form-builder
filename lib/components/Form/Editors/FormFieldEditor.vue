@@ -22,17 +22,17 @@
     <div class="whppt-checkbox__wrapper">
       <whppt-checkbox
         :id="`${$options._scopeId}-required-checkbox`"
-        v-model="selectedContent.required"
+        :value="selectedContent.required"
         label="Required"
-        @click="updateBoolean('required')"
+        @input="updateBoolean('required')"
       ></whppt-checkbox>
     </div>
     <div class="whppt-checkbox__wrapper">
       <whppt-checkbox
         :id="`${$options._scopeId}-half-width-checkbox`"
-        v-model="selectedContent.halfWidth"
+        :value="selectedContent.halfWidth"
         label="Half Width"
-        @click="updateBoolean('halfWidth')"
+        @input="updateBoolean('halfWidth')"
       ></whppt-checkbox>
     </div>
     <div v-if="selectedContent.type === 'select' || selectedContent.type === 'multipleChoice'">
