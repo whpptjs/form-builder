@@ -10,9 +10,6 @@
 <script>
 import FieldLabel from './FieldLabel';
 
-// TODO: Replace tailwind classes
-// TODO: Figure out icon
-
 export default {
   name: 'FormCheckbox',
   components: { FieldLabel },
@@ -33,11 +30,4 @@ export default {
 .whppt-form-checkbox {
   margin-bottom: 2rem;
 }
-
-/* .whppt-form-checkbox input {
-  width: 100%;
-  padding: 1rem;
-  font-size: 1.125rem;
-  font-weight: 500;
-} */
 </style>
