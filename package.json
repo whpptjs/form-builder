@@ -1,6 +1,6 @@
 {
   "name": "@whppt/form-builder",
-  "version": "1.0.0-rc2",
+  "version": "1.0.0-rc3",
   "description": "Whppt form builder modules for use with the nuxt framework",
   "repository": "https://github.com/whpptjs/form-builder",
   "license": "MIT",
