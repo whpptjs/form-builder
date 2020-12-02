@@ -6,12 +6,21 @@
 [![Codecov][codecov-src]][codecov-href]
 [![License][license-src]][license-href]
 
-> Whppt form builder modules for use with the nuxt framework
+> Whppt form builder modules for use with the nuxt framework, @whppt/nuxt and @whppt/api-express
 
 [📖 **Release Notes**](./CHANGELOG.md)
 
-## Setup
+## Table of Contents
 
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+
+## Features
+- Simple Form creation and integration with core Whppt modules to easily build forms and send them via select services.
+
+## Installation
 1. Add `@whppt/form-builder` dependency to your project
 
 ```bash
@@ -32,17 +41,67 @@ yarn add @whppt/form-builder # or npm install @whppt/form-builder
 }
 ```
 
-## Development
+3. Make a few updates to your `~/nuxt.config.js` file.
+```js
+export default {
+  build: {
+    transpile: ['@whppt/layouts'],
+  },
+}
+```
 
-1. Clone this repository
-2. Install dependencies using `yarn install` or `npm install`
-3. Start development server using `npm run dev`
+## Usage
+
+### Adding in the API module
+~/server/index.js
+```js
+const express = require('express');
+const Whppt = require('@whppt/api-express');
+
+/* Import/require the api module from @whppt/form-builder */
+const forms = require('@whppt/form-builder/lib/api');
+
+/* Add the module to the options that will be passed to @whppt/api-express */
+const options = {
+  modules: {
+    forms,
+  },
+};
+
+const app = express();
+
+Whppt(options).then(whppt => app.use(whppt));
+
+module.exports = app;
+```
+
+### Registering the component with @whppt/nuxt
+Inside any whppt plugin that you wish to use the form-builder component on add the following
+```js
+/* Import/require the Form definition from @whppt/form-builder, this is a whppt component */
+import { Form } from '@whppt/form-builder/lib/components';
+
+export default {
+  name: 'MyPlugin',
+  pageType: {
+    name: 'my-plugin',
+    label: 'My Plugin',
+    collection: { name: 'my-plugin-collection' },
+    components: {
+      /* Register the Form definition to this plugin, this will now show up as a usable component on the template */
+      Form,
+    },
+  },
+
+};
+
+```
 
 ## License
 
 [MIT License](./LICENSE)
 
-Copyright (c) lucas <lucas@sveltestudios.com>
+Copyright (c) lucas <info@sveltestudios.com>
 
 <!-- Badges -->
 [npm-version-src]: https://img.shields.io/npm/v/@whppt/form-builder/latest.svg

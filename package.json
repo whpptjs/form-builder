@@ -6,7 +6,7 @@
   "license": "MIT",
   "contributors": [
     {
-      "name": "lucas <lucas@sveltestudios.com>"
+      "name": "lucas <info@sveltestudios.com>"
     }
   ],
   "files": [
@@ -20,7 +20,8 @@
     "test": "yarn lint && jest"
   },
   "dependencies": {
-    "@whppt/nuxt": "^2.0.0-rc25",
+    "@whppt/api-express": "next",
+    "@whppt/nuxt": "next",
     "lodash": "^4.17.20",
     "vuelidate": "^0.7.6",
     "vuex": "^3.6.0"
