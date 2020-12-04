@@ -23,6 +23,7 @@
     "@whppt/api-express": "next",
     "@whppt/nuxt": "next",
     "lodash": "^4.17.20",
+    "vue-recaptcha": "^1.3.0",
     "vuelidate": "^0.7.6",
     "vuex": "^3.6.0"
   },
