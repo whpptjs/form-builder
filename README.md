@@ -98,6 +98,24 @@ export default {
 
 ```
 
+
+### Setting up Google recaptcha (Optional)
+This module leverages [vue-recaptcha](https://github.com/DanSnow/vue-recaptcha) for fast setup and working Google Recaptcha. Don't forget to star their repo on github as well!
+
+1. Add in the siteKey option where you register the module (see [options](#options) for more info)
+```js
+{
+  modules: {
+    ['@whppt/form-builder', { siteKey: 'my-google-site-key' }]
+  }
+}
+```
+
+2. Add in the env variable `RECAPTCHA_SECRET` (see [options](#options) for more info)
+```dotenv
+RECAPTCHA_SECRET=MySuperSecretRecaptchaSecretForMyEyesOnly
+```
+
 ## Options
 
 ### Module Options

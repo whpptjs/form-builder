@@ -10,7 +10,6 @@
       @input="updateValue($event, 'type')"
     >
     </whppt-select>
-    <!-- TODO: Make it so recaptcha is always called recaptcha -->
     <whppt-text-input
       v-if="getTypeDisplay !== 'Captcha'"
       id="name"
