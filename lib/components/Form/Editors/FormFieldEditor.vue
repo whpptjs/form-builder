@@ -10,16 +10,23 @@
       @input="updateValue($event, 'type')"
     >
     </whppt-select>
-    <whppt-text-input id="name" :value="selectedContent.name" label="Field Name" @input="updateValue($event, 'name')" />
+    <!-- TODO: Make it so recaptcha is always called recaptcha -->
+    <whppt-text-input
+      v-if="getTypeDisplay !== 'Captcha'"
+      id="name"
+      :value="selectedContent.name"
+      label="Field Name"
+      @input="updateValue($event, 'name')"
+    />
     <whppt-text-input id="label" :value="selectedContent.label" label="Label" @input="updateValue($event, 'label')" />
     <whppt-text-input
-      v-if="selectedComponent.type !== 'checkbox' && selectedComponent.type !== 'multipleChoice'"
+      v-if="selectedComponent.type !== 'checkbox' || selectedComponent.type !== 'multipleChoice'"
       id="placeholder"
       :value="selectedContent.placeholder"
       label="Placeholder"
       @input="updateValue($event, 'placeholder')"
     />
-    <div class="whppt-checkbox__wrapper">
+    <div v-if="getTypeDisplay !== 'Captcha'" class="whppt-checkbox__wrapper">
       <whppt-checkbox
         :id="`${$options._scopeId}-required-checkbox`"
         :value="selectedContent.required"
@@ -61,6 +68,7 @@ export default {
         { name: 'Checkbox', value: 'checkbox' },
         { name: 'Email', value: 'email' },
         { name: 'Multiple Choice', value: 'multipleChoice' },
+        { name: 'Captcha', value: 'captcha' },
       ],
     };
   },
@@ -76,13 +84,22 @@ export default {
   },
   methods: {
     ...mapActions('whppt-nuxt/editor', ['setSelectedComponentState', 'pushSelectedComponentState']),
-    updateBoolean(path) {
+    updateBoolean(path, value) {
       this.setSelectedComponentState({
         path,
-        value: !this.selectedContent[path],
+        value: value || !this.selectedContent[path],
       });
     },
     updateValue(value, path) {
+      if (value === 'captcha' && path === 'type') {
+        this.updateBoolean('required', true);
+        this.setSelectedComponentState({ value: 'recaptcha', path: 'name' });
+      }
+
+      if (path === 'type' && value !== 'captcha') {
+        this.setSelectedComponentState({ value: '', path: 'name' });
+      }
+
       this.setSelectedComponentState({ value, path });
     },
   },

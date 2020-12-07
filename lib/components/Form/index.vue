@@ -81,10 +81,19 @@ import FormMultipleChoiceField from './Fields/MultipleChoiceField';
 import FormSelectField from './Fields/SelectField';
 import FormTextArea from './Fields/TextArea';
 import FormTextField from './Fields/TextField';
+import FormRecaptcha from './Fields/Recaptcha';
 
 export default {
   name: 'WhpptFormsForm',
-  components: { FormCheckbox, FormEmailField, FormMultipleChoiceField, FormSelectField, FormTextArea, FormTextField },
+  components: {
+    FormCheckbox,
+    FormEmailField,
+    FormMultipleChoiceField,
+    FormSelectField,
+    FormTextArea,
+    FormTextField,
+    FormRecaptcha,
+  },
   props: {
     content: { type: Object, default: () => ({}) },
     container: { type: Boolean, default: true },
@@ -151,6 +160,8 @@ export default {
           return 'FormEmailField';
         case 'multipleChoice':
           return 'FormMultipleChoiceField';
+        case 'captcha':
+          return 'FormRecaptcha';
         default:
           return 'FormTextField';
       }
@@ -159,6 +170,9 @@ export default {
       if (!event.name) return;
       this.$set(this.formValues, event.name, event.value);
       this.success = false;
+    },
+    verifyRecaptcha(response) {
+      this.formValues.recaptcha = response;
     },
     submit() {
       this.$v.$touch();
