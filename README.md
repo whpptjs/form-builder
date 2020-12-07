@@ -102,9 +102,9 @@ export default {
 
 ### Module Options
 
-| Option   | default   | Required | Description |
-| ---------|-----------|----------|-------------|
-| siteKey  | undefined | false    | Google reCAPTCHA V2 sitekey, can be found/generated [here](https://developers.google.com/recaptcha). This is required to use the recaptcha field. | 
+| Option   | default   | Required | type   | Description |
+| ---------|-----------|----------|--------|-------------|
+| siteKey  | undefined | false    | string | Google reCAPTCHA V2 sitekey, can be found/generated [here](https://developers.google.com/recaptcha). This is required to use the recaptcha field. | 
 
 ### Env Variables
 | Option           | default   | Required | Description |
