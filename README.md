@@ -99,9 +99,17 @@ export default {
 ```
 
 ## Options
-| Option   | default   | Required | Description           |
-| ---------|-----------|----------|-----------------------|
+
+### Module Options
+
+| Option   | default   | Required | Description |
+| ---------|-----------|----------|-------------|
 | siteKey  | undefined | false    | Google reCAPTCHA V2 sitekey, can be found/generated [here](https://developers.google.com/recaptcha). This is required to use the recaptcha field. | 
+
+### Env Variables
+| Option           | default   | Required | Description |
+| -----------------|-----------|----------|-------------|
+| RECAPTCHA_SECRET | undefined | false    | Google reCAPTCHA V2 secret key, can be found/generated [here](https://developers.google.com/recaptcha). This is required to use the recaptcha field. | 
 
 
 ## License
