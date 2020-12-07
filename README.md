@@ -133,5 +133,3 @@ Copyright (c) lucas <info@sveltestudios.com>
 
 [license-src]: https://img.shields.io/npm/l/@whppt/form-builder.svg
 [license-href]: https://npmjs.com/package/@whppt/form-builder
-
-[sitekey-description]: Here is a description
