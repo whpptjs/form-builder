@@ -58,21 +58,24 @@ import TextListEditor from './TextListEditor';
 export default {
   name: 'FormFieldEditor',
   components: { WhpptTextInput, WhpptSelect, WhpptCheckbox, TextListEditor },
-  data() {
-    return {
-      fieldTypes: [
+  computed: {
+    ...mapState('whppt-nuxt/editor', ['selectedComponent', 'baseAPIUrl']),
+    fieldTypes() {
+      const fieldTypes = [
         { name: 'Text', value: 'text' },
         { name: 'Text Area', value: 'textArea' },
         { name: 'Select', value: 'select' },
         { name: 'Checkbox', value: 'checkbox' },
         { name: 'Email', value: 'email' },
         { name: 'Multiple Choice', value: 'multipleChoice' },
-        { name: 'Captcha', value: 'captcha' },
-      ],
-    };
-  },
-  computed: {
-    ...mapState('whppt-nuxt/editor', ['selectedComponent', 'baseAPIUrl']),
+      ];
+
+      const options = JSON.parse(`<%= JSON.stringify(options) %>`);
+
+      if (options.siteKey) fieldTypes.push({ name: 'Captcha', value: 'captcha' });
+
+      return fieldTypes;
+    },
     selectedContent() {
       return this.selectedComponent.value;
     },
