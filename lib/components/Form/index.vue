@@ -73,6 +73,7 @@
 <script>
 import { forEach, uniqBy, find } from 'lodash';
 import { mapActions, mapState } from 'vuex';
+import { validationMixin } from 'vuelidate';
 import { required, email } from 'vuelidate/lib/validators';
 
 import FormCheckbox from './Fields/Checkbox';
@@ -94,6 +95,7 @@ export default {
     FormTextField,
     FormRecaptcha,
   },
+  mixins: [validationMixin],
   props: {
     content: { type: Object, default: () => ({}) },
     container: { type: Boolean, default: true },
