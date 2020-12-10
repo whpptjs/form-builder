@@ -1,7 +1,7 @@
 <template>
   <div class="whppt-form-label">
     <div v-if="label || inEditor" class="whppt-form-label-text">
-      {{ label || `Field Label${field.required && '*'}` }}
+      {{ label || `Field Label${field.required ? '*' : ''}` }}
     </div>
     <div v-else class="whppt-form-label-text"></div>
     <span v-if="showError" class="whppt-form-label-error">
