@@ -1,8 +1,9 @@
 <template>
   <div class="whppt-form-label">
-    <div class="whppt-form-label-text">
-      {{ label }}
+    <div v-if="label || inEditor" class="whppt-form-label-text">
+      {{ label || `Field Label${field.required && '*'}` }}
     </div>
+    <div v-else class="whppt-form-label-text"></div>
     <span v-if="showError" class="whppt-form-label-error">
       {{ errorMessage || 'This field is required' }}
     </span>
@@ -10,6 +11,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'FieldLabel',
   props: {
@@ -18,9 +21,15 @@ export default {
     errorMessage: { type: String, default: '' },
   },
   computed: {
+    ...mapState('whppt-nuxt/editor', ['activeMenuItem']),
+    inEditor() {
+      return this.activeMenuItem === 'select';
+    },
     label() {
-      let label = this.field.label || 'Field Label';
-      if (this.field.required) label = label + '*';
+      let label = this.field.label;
+
+      if (this.field.required && this.field.label) label = label + '*';
+
       return label;
     },
   },
@@ -28,13 +37,16 @@ export default {
 </script>
 
 <style>
+:root {
+  --text-opacity: 1;
+}
+
 .whppt-form-label {
   display: flex;
   justify-content: space-between;
 }
 
 .whppt-form-label-text {
-  --text-opacity: 1;
   color: #718096;
   color: rgba(113, 128, 150, var(--text-opacity));
   margin-bottom: 1rem;
@@ -42,7 +54,6 @@ export default {
 }
 
 .whppt-form-label-error {
-  --text-opacity: 1;
   color: #f56565;
   color: rgba(245, 101, 101, var(--text-opacity));
   text-align: right;

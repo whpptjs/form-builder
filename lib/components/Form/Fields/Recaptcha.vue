@@ -1,19 +1,13 @@
 <template>
-  <div>
-    <!-- eslint-disable-next-line -->
-    <% if (options.siteKey) { %>
-    <div v-form-field="field" class="whppt-form-captcha">
-      <field-label :field="field" :show-error="showError"></field-label>
-      <vue-recaptcha
-        sitekey="<%= options.siteKey %>"
-        :load-recaptcha-script="true"
-        @verify="onVerify"
-        @expired="onExpired"
-        @error="onError"
-      ></vue-recaptcha>
-    </div>
-    <!-- eslint-disable-next-line -->
-    <% } %>
+  <div v-if="options.siteKey" v-form-field="field" class="whppt-form-captcha">
+    <field-label :field="field" :show-error="showError"></field-label>
+    <vue-recaptcha
+      :sitekey="options.siteKey"
+      :load-recaptcha-script="true"
+      @verify="onVerify"
+      @expired="onExpired"
+      @error="onError"
+    ></vue-recaptcha>
   </div>
 </template>
 
@@ -21,12 +15,15 @@
 import VueRecaptcha from 'vue-recaptcha';
 import FieldLabel from './FieldLabel';
 
+const options = JSON.parse(`<%= JSON.stringify(options) %>`);
+
 export default {
   name: 'Recaptcha',
   components: { VueRecaptcha, FieldLabel },
   props: { field: { type: Object, default: () => ({}) }, showError: { type: Boolean, default: false } },
   data: () => ({
     value: '',
+    options,
   }),
   methods: {
     onVerify(response) {

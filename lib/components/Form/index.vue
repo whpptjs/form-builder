@@ -27,7 +27,7 @@
             "
           >
             <div>
-              <div v-if="!field.name && inEditor">Missing field name</div>
+              <div v-if="inEditor && !field.name">Missing field name</div>
               <component
                 :is="getComponent(field.type)"
                 :field="field"

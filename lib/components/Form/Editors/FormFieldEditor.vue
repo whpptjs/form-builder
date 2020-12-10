@@ -72,7 +72,7 @@ export default {
 
       const options = JSON.parse(`<%= JSON.stringify(options) %>`);
 
-      if (options.siteKey) fieldTypes.push({ name: 'Captcha', value: 'captcha' });
+      if (options && options.siteKey) fieldTypes.push({ name: 'Captcha', value: 'captcha' });
 
       return fieldTypes;
     },
