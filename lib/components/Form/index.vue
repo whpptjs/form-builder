@@ -38,7 +38,7 @@
           </div>
         </div>
         <div v-if="error" class="whppt-form__validation">
-          {{ error.message }}
+          <span class="whppt-form__validation--error">{{ error.response.data.error.message || error.message }}</span>
           <div v-for="e in error.validationErrors" :key="e">{{ e }}</div>
         </div>
 
@@ -249,7 +249,12 @@ export default {
 }
 
 .whppt-form__validation {
+  display: block;
   color: red;
+}
+
+.whppt-form__validation--error {
+  margin-bottom: 0.75rem;
 }
 
 .whppt-form__form-config {
