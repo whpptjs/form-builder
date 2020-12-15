@@ -19,9 +19,12 @@
 - [License](#license)
 
 ## Features
+
 - Simple Form creation and integration with core Whppt modules to easily build forms and send them via select services.
+- Options for Build and Runtime configuration of the site key.
 
 ## Installation
+
 1. Add `@whppt/form-builder` dependency to your project
 
 ```bash
@@ -37,24 +40,32 @@ yarn add @whppt/form-builder # or npm install @whppt/form-builder
     '@whppt/form-builder',
 
     // With options
-    ['@whppt/form-builder', { /* module options */ }]
-  ]
+    [
+      '@whppt/form-builder',
+      {
+        // ... see options below: Setting up Google recaptcha
+      },
+    ],
+  ];
 }
 ```
 
 3. Make a few updates to your `~/nuxt.config.js` file.
+
 ```js
 export default {
   build: {
-    transpile: ['@whppt/layouts'],
+    transpile: ['@whppt/form-builder'],
   },
-}
+};
 ```
 
 ## Usage
 
 ### Adding in the API module
+
 ~/server/index.js
+
 ```js
 const express = require('express');
 const Whppt = require('@whppt/api-express');
@@ -77,7 +88,9 @@ module.exports = app;
 ```
 
 ### Registering the component with @whppt/nuxt
+
 Inside any whppt plugin that you wish to use the form-builder component on add the following
+
 ```js
 /* Import/require the Form definition from @whppt/form-builder, this is a whppt component */
 import { Form } from '@whppt/form-builder/lib/components';
@@ -93,25 +106,45 @@ export default {
       Form,
     },
   },
-
 };
-
 ```
 
+### Setting up Google recaptcha - Build time config (Optional)
 
-### Setting up Google recaptcha (Optional)
 This module leverages [vue-recaptcha](https://github.com/DanSnow/vue-recaptcha) for fast setup and working Google Recaptcha. Don't forget to star their repo on github as well!
 
 1. Add in the siteKey option where you register the module (see [options](#options) for more info)
+
 ```js
 {
   modules: {
-    ['@whppt/form-builder', { siteKey: 'my-google-site-key' }]
+    ['@whppt/form-builder', { recaptcha_sitekey: 'my-google-site-key' }];
   }
 }
 ```
 
 2. Add in the env variable `RECAPTCHA_SECRET` (see [options](#options) for more info)
+
+```dotenv
+RECAPTCHA_SECRET=MySuperSecretRecaptchaSecretForMyEyesOnly
+```
+
+### Setting up Google recaptcha - Run time config (Optional)
+
+This module leverages [vue-recaptcha](https://github.com/DanSnow/vue-recaptcha) for fast setup and working Google Recaptcha. Don't forget to star their repo on github as well!
+
+1. Add in the siteKey option to public runtime config in nuxt.config.js
+
+```js
+export default {
+  publicRuntimeConfig: {
+    recaptcha_sitekey: '<your public sitekey>',
+  },
+};
+```
+
+2. Add in the env variable `RECAPTCHA_SECRET` (see [options](#options) for more info)
+
 ```dotenv
 RECAPTCHA_SECRET=MySuperSecretRecaptchaSecretForMyEyesOnly
 ```
@@ -120,15 +153,15 @@ RECAPTCHA_SECRET=MySuperSecretRecaptchaSecretForMyEyesOnly
 
 ### Module Options
 
-| Option   | default   | Required | type   | Description |
-| ---------|-----------|----------|--------|-------------|
-| siteKey  | undefined | false    | string | Google reCAPTCHA V2 sitekey, can be found/generated [here](https://developers.google.com/recaptcha). This is required to use the recaptcha field. | 
+| Option            | default   | Required | type   | Description                                                                                                                                       |
+| ----------------- | --------- | -------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| recaptcha_sitekey | undefined | false    | string | Google reCAPTCHA V2 sitekey, can be found/generated [here](https://developers.google.com/recaptcha). This is required to use the recaptcha field. |
 
 ### Env Variables
-| Option           | default   | Required | Description |
-| -----------------|-----------|----------|-------------|
-| RECAPTCHA_SECRET | undefined | false    | Google reCAPTCHA V2 secret key, can be found/generated [here](https://developers.google.com/recaptcha). This is required to use the recaptcha field. | 
 
+| Option           | default   | Required | Description                                                                                                                                          |
+| ---------------- | --------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| RECAPTCHA_SECRET | undefined | false    | Google reCAPTCHA V2 secret key, can be found/generated [here](https://developers.google.com/recaptcha). This is required to use the recaptcha field. |
 
 ## License
 
@@ -137,17 +170,14 @@ RECAPTCHA_SECRET=MySuperSecretRecaptchaSecretForMyEyesOnly
 Copyright (c) lucas <info@sveltestudios.com>
 
 <!-- Badges -->
+
 [npm-version-src]: https://img.shields.io/npm/v/@whppt/form-builder/latest.svg
 [npm-version-href]: https://npmjs.com/package/@whppt/form-builder
-
 [npm-downloads-src]: https://img.shields.io/npm/dt/@whppt/form-builder.svg
 [npm-downloads-href]: https://npmjs.com/package/@whppt/form-builder
-
 [github-actions-ci-src]: https://github.com//workflows/ci/badge.svg
 [github-actions-ci-href]: https://github.com//actions?query=workflow%3Aci
-
 [codecov-src]: https://img.shields.io/codecov/c/github/.svg
 [codecov-href]: https://codecov.io/gh/
-
 [license-src]: https://img.shields.io/npm/l/@whppt/form-builder.svg
 [license-href]: https://npmjs.com/package/@whppt/form-builder

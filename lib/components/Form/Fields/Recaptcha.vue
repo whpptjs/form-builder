@@ -1,8 +1,8 @@
 <template>
-  <div v-if="options.siteKey" v-form-field="field" class="whppt-form-captcha">
+  <div v-if="siteKey" v-form-field="field" class="whppt-form-captcha">
     <field-label :field="field" :show-error="showError"></field-label>
     <vue-recaptcha
-      :sitekey="options.siteKey"
+      :sitekey="siteKey"
       :load-recaptcha-script="true"
       @verify="onVerify"
       @expired="onExpired"
@@ -25,6 +25,11 @@ export default {
     value: '',
     options,
   }),
+  computed: {
+    siteKey() {
+      return this.$config.recaptcha_sitekey || options.recaptcha_sitekey;
+    },
+  },
   methods: {
     onVerify(response) {
       this.value = response;

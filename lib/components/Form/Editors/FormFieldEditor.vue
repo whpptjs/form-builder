@@ -55,6 +55,8 @@ import WhpptSelect from '@whppt/nuxt/lib/components/ui/Select.vue';
 import WhpptCheckbox from '@whppt/nuxt/lib/components/ui/Checkbox.vue';
 import TextListEditor from './TextListEditor';
 
+const options = JSON.parse(`<%= JSON.stringify(options) %>`);
+
 export default {
   name: 'FormFieldEditor',
   components: { WhpptTextInput, WhpptSelect, WhpptCheckbox, TextListEditor },
@@ -70,9 +72,8 @@ export default {
         { name: 'Multiple Choice', value: 'multipleChoice' },
       ];
 
-      const options = JSON.parse(`<%= JSON.stringify(options) %>`);
-
-      if (options && options.siteKey) fieldTypes.push({ name: 'Captcha', value: 'captcha' });
+      if (this.$config.recaptcha_sitekey || options.recaptcha_sitekey)
+        fieldTypes.push({ name: 'Captcha', value: 'captcha' });
 
       return fieldTypes;
     },
