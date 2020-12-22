@@ -189,6 +189,7 @@ export default {
           settings: {
             subject: this.content.subject,
             fields: this.content.fields,
+            identifier: this.content.identifier,
             recipient: this.content.recipient,
             ccs: this.content.ccs,
           },

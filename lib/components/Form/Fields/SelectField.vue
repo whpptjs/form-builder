@@ -25,7 +25,10 @@ export default {
     value: '',
   }),
   mounted() {
-    if (!this.field.placeholder && this.field.options[0]) this.value = this.field.options[0];
+    if (this.field.name && !this.field.placeholder && this.field.options[0]) {
+      this.value = this.field.options[0];
+      this.$emit('field-updated', { name: this.field.name, value: this.value });
+    }
   },
 };
 </script>
