@@ -19,7 +19,7 @@
     "start": "nuxt start example",
     "lint": "eslint --ext .js,.vue .",
     "release": "yarn test && standard-version && git push --follow-tags && npm publish",
-    "test": "yarn lint && jest"
+    "test": "yarn lint && jest --passWithNoTests"
   },
   "dependencies": {
     "@whppt/api-express": "next",
