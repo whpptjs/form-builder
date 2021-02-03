@@ -108,7 +108,7 @@ export default {
     error: undefined,
   }),
   computed: {
-    ...mapState('whppt-nuxt/editor', ['activeMenuItem']),
+    ...mapState('whppt/editor', ['activeMenuItem']),
     inEditor() {
       return this.activeMenuItem === 'select';
     },
@@ -133,7 +133,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions('whppt-nuxt/editor', ['pushSelectedComponentState']),
+    ...mapActions('whppt/editor', ['pushSelectedComponentState']),
     addNew() {
       this.pushSelectedComponentState({
         path: 'fields',

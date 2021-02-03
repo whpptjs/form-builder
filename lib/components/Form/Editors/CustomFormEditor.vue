@@ -36,8 +36,8 @@
 <script>
 import { without } from 'lodash';
 import { mapState, mapActions } from 'vuex';
-import WhpptTextInput from '@whppt/nuxt/lib/components/ui/Input.vue';
-import WhpptButton from '@whppt/nuxt/lib/components/ui/Button.vue';
+import WhpptTextInput from '@whppt/nuxt/lib/components/ui/components/Input.vue';
+import WhpptButton from '@whppt/nuxt/lib/components/ui/components/Button.vue';
 import Add from '@whppt/nuxt/lib/components/icons/Add';
 import Trash from '@whppt/nuxt/lib/components/icons/Trash';
 
@@ -45,13 +45,13 @@ export default {
   name: 'CustomFormEditor',
   components: { WhpptTextInput, WhpptButton, Add, Trash },
   computed: {
-    ...mapState('whppt-nuxt/editor', ['selectedComponent', 'baseAPIUrl']),
+    ...mapState('whppt/editor', ['selectedComponent', 'baseAPIUrl']),
     selectedContent() {
       return this.selectedComponent.value;
     },
   },
   methods: {
-    ...mapActions('whppt-nuxt/editor', ['setSelectedComponentState', 'pushSelectedComponentState']),
+    ...mapActions('whppt/editor', ['setSelectedComponentState', 'pushSelectedComponentState']),
     updateValue(value, path) {
       this.setSelectedComponentState({ value, path });
     },

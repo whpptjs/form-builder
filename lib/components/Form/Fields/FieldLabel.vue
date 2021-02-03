@@ -21,7 +21,7 @@ export default {
     errorMessage: { type: String, default: '' },
   },
   computed: {
-    ...mapState('whppt-nuxt/editor', ['activeMenuItem']),
+    ...mapState('whppt/editor', ['activeMenuItem']),
     inEditor() {
       return this.activeMenuItem === 'select';
     },
