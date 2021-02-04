@@ -1,6 +1,6 @@
 {
   "name": "@whppt/form-builder",
-  "version": "1.0.0-rc8",
+  "version": "1.0.0-rc9",
   "description": "Whppt form builder modules for use with the nuxt framework",
   "repository": "https://github.com/whpptjs/form-builder",
   "license": "MIT",
@@ -19,7 +19,7 @@
     "start": "nuxt start example",
     "lint": "eslint --ext .js,.vue .",
     "release": "yarn test && standard-version && git push --follow-tags && npm publish",
-    "test": "yarn lint && jest"
+    "test": "yarn lint && jest --passWithNoTests"
   },
   "dependencies": {
     "@whppt/api-express": "next",
