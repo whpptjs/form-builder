@@ -36,10 +36,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.whppt-form-multiple-choice,
-.whppt-form-multiple-choice__option {
-  margin-bottom: 0.75rem;
-}
-</style>

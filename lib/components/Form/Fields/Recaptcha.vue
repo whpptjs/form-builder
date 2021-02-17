@@ -44,9 +44,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.whppt-form-captcha {
-  margin-bottom: 2rem;
-}
-</style>

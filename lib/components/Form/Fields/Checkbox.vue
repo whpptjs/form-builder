@@ -25,9 +25,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.whppt-form-checkbox {
-  margin-bottom: 2rem;
-}
-</style>

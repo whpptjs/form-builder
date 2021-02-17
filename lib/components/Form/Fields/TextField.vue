@@ -22,16 +22,3 @@ export default {
   }),
 };
 </script>
-
-<style>
-.whppt-form-text {
-  margin-bottom: 2rem;
-}
-
-.whppt-form-text input {
-  width: 100%;
-  padding: 1rem;
-  font-size: 1.125rem;
-  font-weight: 500;
-}
-</style>

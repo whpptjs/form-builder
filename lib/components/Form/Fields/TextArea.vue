@@ -24,16 +24,3 @@ export default {
   }),
 };
 </script>
-
-<style>
-.whppt-form-textarea {
-  margin-bottom: 2rem;
-}
-
-.whppt-form-textarea textarea {
-  width: 100%;
-  padding: 1rem;
-  font-size: 1.125rem;
-  font-weight: 500;
-}
-</style>

@@ -35,28 +35,3 @@ export default {
   },
 };
 </script>
-
-<style>
-:root {
-  --text-opacity: 1;
-}
-
-.whppt-form-label {
-  display: flex;
-  justify-content: space-between;
-}
-
-.whppt-form-label-text {
-  color: #718096;
-  color: rgba(113, 128, 150, var(--text-opacity));
-  margin-bottom: 1rem;
-  font-weight: 300;
-}
-
-.whppt-form-label-error {
-  color: #f56565;
-  color: rgba(245, 101, 101, var(--text-opacity));
-  text-align: right;
-  font-size: 0.65rem;
-}
-</style>

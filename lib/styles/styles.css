@@ -1,0 +1,200 @@
+/* Form Styles */
+.whppt-form {
+  display: flex;
+}
+
+.whppt-form__gutter {
+  display: none;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  width: 8.333333%;
+}
+
+.whppt-form__content {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  width: 100%;
+}
+
+.whppt-form__title {
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+}
+
+.whppt-form__validation {
+  display: block;
+  color: red;
+}
+
+.whppt-form__validation--error {
+  margin-bottom: 0.75rem;
+}
+
+.whppt-form__form-config {
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.whppt-form__actions {
+  align-items: center;
+  display: flex;
+}
+
+.whppt-form__primary {
+  font-weight: 500;
+  padding: 1rem 2.5rem;
+  background-color: limegreen;
+  border: 2px solid limegreen;
+  transition: background-color 0.15s ease, border 0.15s ease, color 0.15s ease;
+  will-change: background-color, border, color;
+  color: white;
+}
+
+.whppt-form__primary:hover,
+.whppt-form__primary:focus {
+  transition: background-color 0.15s ease, border 0.15s ease, color 0.15s ease;
+  will-change: background-color, border, color;
+  background-color: white;
+  color: limegreen;
+}
+
+.whppt-form__primary.in-editor {
+  cursor: pointer;
+}
+
+.whppt-form__secondary {
+  font-weight: 500;
+  padding: 1rem 2.5rem;
+  margin-left: 2rem;
+  background-color: transparent;
+  transition: color 0.15s ease;
+  will-change: color;
+  color: inherit;
+}
+
+.whppt-form__secondary:hover,
+.whppt-form__secondary:focus {
+  color: dodgerblue;
+}
+
+.whppt-form__fields {
+  justify-content: space-between;
+  flex-wrap: wrap;
+  display: flex;
+}
+
+.whppt-form__fields.in-editor {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.whppt-form__field-config {
+  font-style: italic;
+}
+
+.whppt-form__field-width-half {
+  width: 100%;
+}
+
+.whppt-form__field-width-full {
+  width: 100%;
+}
+
+@media only screen and (min-width: 1024px) {
+  .whppt-form__gutter {
+    display: block;
+  }
+  .whppt-form__content {
+    width: 83.333333%;
+  }
+  .whppt-form__title {
+    font-size: 1.25rem;
+  }
+  .whppt-form__field-width-half {
+    width: 45%;
+  }
+}
+
+/* Checkbox styles */
+.whppt-form-checkbox {
+  margin-bottom: 2rem;
+}
+
+/* Email field styles */
+.whppt-form-email {
+  margin-bottom: 2rem;
+}
+
+.whppt-form-email input {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+/* Field label styles */
+.whppt-form-label {
+  display: flex;
+  justify-content: space-between;
+}
+
+.whppt-form-label-text {
+  color: #718096;
+  color: rgba(113, 128, 150, 1);
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+
+.whppt-form-label-error {
+  color: #f56565;
+  color: rgba(245, 101, 101, 1);
+  text-align: right;
+  font-size: 0.65rem;
+}
+
+/* Multi choice styles*/
+.whppt-form-multiple-choice,
+.whppt-form-multiple-choice__option {
+  margin-bottom: 0.75rem;
+}
+
+/* Recaptcha styles */
+.whppt-form-captcha {
+  margin-bottom: 2rem;
+}
+
+/* Select styles */
+.whppt-form-select {
+  margin-bottom: 2rem;
+}
+
+.whppt-form-select select {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+/* Textarea styles */
+.whppt-form-textarea {
+  margin-bottom: 2rem;
+}
+
+.whppt-form-textarea textarea {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+/* Text field styles */
+.whppt-form-text {
+  margin-bottom: 2rem;
+}
+
+.whppt-form-text input {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+}

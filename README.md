@@ -34,6 +34,7 @@ yarn add @whppt/form-builder # or npm install @whppt/form-builder
 2. Add `@whppt/form-builder` to the `modules` section of `nuxt.config.js`
 
 ```js
+// ~/nuxt.config.js
 {
   modules: [
     // Simple usage
@@ -53,11 +54,27 @@ yarn add @whppt/form-builder # or npm install @whppt/form-builder
 3. Make a few updates to your `~/nuxt.config.js` file.
 
 ```js
+// ~/nuxt.config.js
 export default {
   build: {
     transpile: ['@whppt/form-builder'],
   },
 };
+```
+
+4. Including the css (optional)  
+
+Out of the box we supply some standard styling which can be added to a nuxt project like so.
+
+```js
+// ~/nuxt.config.js
+export default {
+  css: [
+    '@whppt/form-builder/lib/styles/styles.css',
+    // any other styles you need go here 
+    // if you want to override the default styles, you can include your own css file here
+  ]
+}
 ```
 
 ## Usage
