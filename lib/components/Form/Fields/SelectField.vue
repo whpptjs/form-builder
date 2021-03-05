@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div v-form-field="field" class="whppt-form-select">
+    <div v-form-field="field" v-whppt-editor-enabled="!disableEditing" class="whppt-form-select">
       <field-label :field="field" :show-error="showError"></field-label>
-      <select v-model="value" @change="$emit('field-updated', { name: field.name, value })">
+      <select :value="value" @change="$emit('field-updated', { name: field.name, value: $event.target.value })">
         <option v-if="field.placeholder" value="" disabled selected>
           {{ field.placeholder }}
         </option>
@@ -18,16 +18,17 @@
 import FieldLabel from './FieldLabel';
 
 export default {
-  name: 'FormTextField',
+  name: 'FormSelectField',
   components: { FieldLabel },
-  props: { field: { type: Object, default: () => ({}) }, showError: { type: Boolean, default: false } },
-  data: () => ({
-    value: '',
-  }),
+  props: {
+    field: { type: Object, default: () => ({}) },
+    value: { type: String, default: '' },
+    showError: { type: Boolean, default: false },
+    disableEditing: { type: Boolean, default: false },
+  },
   mounted() {
-    if (this.field.name && !this.field.placeholder && this.field.options[0]) {
-      this.value = this.field.options[0];
-      this.$emit('field-updated', { name: this.field.name, value: this.value });
+    if (this.field.name && !this.field.placeholder && this.field.options[0] && !this.value) {
+      this.$emit('field-updated', { name: this.field.name, value: this.field.options[0] });
     }
   },
 };

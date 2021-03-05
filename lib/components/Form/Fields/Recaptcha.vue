@@ -1,5 +1,5 @@
 <template>
-  <div v-if="siteKey" v-form-field="field" class="whppt-form-captcha">
+  <div v-if="siteKey" v-form-field="field" v-whppt-editor-enabled="!disableEditing" class="whppt-form-captcha">
     <field-label :field="field" :show-error="showError"></field-label>
     <vue-recaptcha
       :sitekey="siteKey"
@@ -20,7 +20,11 @@ const options = JSON.parse(`<%= JSON.stringify(options) %>`);
 export default {
   name: 'Recaptcha',
   components: { VueRecaptcha, FieldLabel },
-  props: { field: { type: Object, default: () => ({}) }, showError: { type: Boolean, default: false } },
+  props: {
+    field: { type: Object, default: () => ({}) },
+    showError: { type: Boolean, default: false },
+    disableEditing: { type: Boolean, default: false },
+  },
   data: () => ({
     value: '',
     options,
