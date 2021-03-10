@@ -43,6 +43,9 @@
         </div>
 
         <div v-if="inEditor" v-custom-form="content" class="whppt-form__form-config">Edit form config</div>
+        <div v-if="inEditor" v-form-success-email="content" class="whppt-form__form-config">
+          Edit success email config
+        </div>
         <div v-if="configError && inEditor">{{ configError }}</div>
         <div v-if="!configError" class="whppt-form__actions flex items-center">
           <button
@@ -192,6 +195,9 @@ export default {
             identifier: this.content.identifier,
             recipient: this.content.recipient,
             ccs: this.content.ccs,
+            successEmailText: this.content.sendSuccessEmail ? this.content.successEmailText : '',
+            successEmailSubject: this.content.sendSuccessEmail ? this.content.successEmailSubject : '',
+            submitterEmailField: this.content.sendSuccessEmail ? this.content.submitterEmailField : '',
           },
           form: this.formValues,
         })
