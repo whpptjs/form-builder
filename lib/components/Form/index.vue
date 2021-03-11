@@ -195,9 +195,9 @@ export default {
             identifier: this.content.identifier,
             recipient: this.content.recipient,
             ccs: this.content.ccs,
-            successEmailText: this.content.sendSuccessEmail ? this.content.successEmailText : '',
-            successEmailSubject: this.content.sendSuccessEmail ? this.content.successEmailSubject : '',
-            submitterEmailField: this.content.sendSuccessEmail ? this.content.submitterEmailField : '',
+            successEmailText: this.content.successEmailText,
+            successEmailSubject: this.content.successEmailSubject,
+            submitterEmailField: this.content.submitterEmailField,
           },
           form: this.formValues,
         })

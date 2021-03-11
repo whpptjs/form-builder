@@ -38,9 +38,11 @@
           </a>
         </template>
       </whppt-table>
-      <whppt-button v-if="items.length" class="whppt-filters-button" style="margin-top: 0.5rem" @click="exportToCSV">
-        Export to CSV
-      </whppt-button>
+      <div v-if="items.length" style="display: flex; justify-content: flex-end; margin-top: 0.5rem">
+        <vue-csv-downloader :data="csvSubmissions" download-name="Form Submissions Export.csv">
+          <whppt-button> Export to CSV </whppt-button>
+        </vue-csv-downloader>
+      </div>
     </div>
     <submissions-filters :active="filtersVisible" @updateFilter="updateFilter" @close="filtersVisible = false" />
     <submission-dialog :is-active="dialogActive" :item="selectedItem" @close="dialogActive = false" />
@@ -50,6 +52,7 @@
 <script>
 import { map, omit } from 'lodash';
 import dayjs from 'dayjs';
+import VueCsvDownloader from 'vue-csv-downloader';
 
 import WhpptTable from '@whppt/nuxt/lib/components/ui/Table.vue';
 import WhpptButton from '@whppt/nuxt/lib/components/ui/Button.vue';
@@ -60,6 +63,7 @@ import SubmissionsFilters from './SubmissionsFilters.vue';
 export default {
   name: 'FormSubmissions',
   components: {
+    VueCsvDownloader,
     WhpptTable,
     WhpptButton,
     SubmissionDialog,
@@ -86,6 +90,7 @@ export default {
     ],
     dialogActive: false,
     selectedItem: undefined,
+    allSubmissions: [],
   }),
   computed: {
     items() {
@@ -101,6 +106,17 @@ export default {
             : '',
         submittedAt: dayjs(formSubmission.createdAt).format('h:mm a, DD/MM/YYYY') || '',
         formFields: formSubmission.form,
+      }));
+    },
+    csvSubmissions() {
+      if (!this.allSubmissions) return [];
+      return map(this.allSubmissions, submission => ({
+        'Form Identifier': submission.settings.identifier || '',
+        'Email Subject': submission.settings.subject || '',
+        'Email Recipient': submission.settings.recipient || '',
+        'Email ccs':
+          submission.settings.ccs && submission.settings.ccs.length ? submission.settings.ccs.join(', ') : '',
+        'Submitted At': dayjs(submission.createdAt).format('h:mm a, DD/MM/YYYY') || '',
       }));
     },
   },
@@ -121,9 +137,10 @@ export default {
         .$get(`/api/forms/getSubmissions`, {
           params,
         })
-        .then(({ formSubmissions, total }) => {
+        .then(({ formSubmissions, total, allSubmissions }) => {
           this.formSubmissions = formSubmissions;
           this.total = total;
+          this.allSubmissions = allSubmissions;
         });
     },
     viewFormInput(item) {

@@ -2,10 +2,28 @@
   <whppt-dialog :is-active="isActive">
     <div class="form-info">
       <whppt-button class="whppt-filters-button" @click="$emit('close')">Close</whppt-button>
-      <div v-for="(value, key) in item" :key="key" class="dialog-item">
+      <!-- <div v-for="(value, key) in item" :key="key" class="dialog-item">
         <div class="dialog-key">{{ `${key}: ` }}</div>
         <div>{{ value }}</div>
-      </div>
+      </div> -->
+      <table class="submission-dialog__table">
+        <tbody>
+          <tr>
+            <td class="key">Form Field</td>
+            <td class="value">Form Value</td>
+          </tr>
+          <tr v-for="(value, key) in item" :key="key">
+            <td class="key">
+              <div>
+                {{ `${key}: ` }}
+              </div>
+            </td>
+            <td class="value">
+              {{ value }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </whppt-dialog>
 </template>
@@ -24,7 +42,10 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+$gray-500: #a0aec0;
+$gray-700: #4a5568;
+
 .whppt-filters-button {
   margin-left: auto;
   margin-bottom: 0.5rem;
@@ -34,11 +55,34 @@ export default {
   padding: 2rem;
 }
 
-.dialog-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 0.5rem;
+.submission-dialog__table {
+  border: 1px solid white;
+  width: 100%;
+  tbody {
+    tr {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      border-bottom: 1px solid $gray-500;
+      padding: 0.5rem;
+    }
+    tr:nth-child(even) {
+      background-color: $gray-700;
+    }
+
+    td.key {
+      width: 50%;
+      div {
+        padding-right: 1rem;
+      }
+    }
+
+    td.value {
+      width: 50%;
+    }
+  }
 }
+
 .dialog-key {
   font-size: 0.75rem;
   font-weight: 600;
