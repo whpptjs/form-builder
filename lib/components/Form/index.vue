@@ -31,6 +31,7 @@
               <component
                 :is="getComponent(field.type)"
                 :field="field"
+                :value="formValues[field.name]"
                 :show-error="(field.name && field.required && $v.formValues[field.name].$error) || false"
                 @field-updated="updateField"
               />
@@ -204,12 +205,17 @@ export default {
         .then(() => {
           this.loading = false;
           this.success = true;
+          this.clearForm();
         })
         .catch(err => {
           this.loading = false;
           this.success = false;
           this.error = err;
         });
+    },
+    clearForm() {
+      this.$v.$reset();
+      this.formValues = {};
     },
   },
   validations() {

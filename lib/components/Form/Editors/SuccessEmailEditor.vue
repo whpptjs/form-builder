@@ -1,21 +1,24 @@
 <template>
   <div>
-    <div class="label" style="margin-top: 1rem">Required Form Fields</div>
     <div v-if="!requiredFields.length" class="no-fields-message">This form has no required fields</div>
-    <div
-      v-for="(field, idx) in requiredFields"
-      :key="idx"
-      class="form-property"
-      :style="idx !== requiredFields.length - 1 ? 'border-bottom: 1px solid gray' : ''"
-    >
-      <div>{{ field.name }}</div>
-      <whppt-checkbox
-        v-if="field.type === 'email'"
-        :value="selectedContent.submitterEmailField === field.name"
-        label="Send confirmation email here"
-        @change="selectedSubmitterEmailField(field.name)"
-      />
-    </div>
+    <div class="label">Required Form Fields</div>
+    <table class="form-fields__table">
+      <tbody>
+        <tr v-for="(field, idx) in requiredFields" :key="idx">
+          <td class="item">
+            <div style="margin-right: 1rem">
+              {{ `${field.name}` }}
+            </div>
+            <whppt-checkbox
+              v-if="field.type === 'email'"
+              :value="selectedContent.submitterEmailField === field.name"
+              label="Send confirmation email here"
+              @change="selectedSubmitterEmailField(field.name)"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
     <div v-if="selectedContent.submitterEmailField" style="margin-top: 0.5rem">
       <whppt-text-input
         id="success-subject"
@@ -28,6 +31,7 @@
         id="success-text"
         :value="selectedContent.successEmailText"
         hide-headers
+        :class="{ error: hasError }"
         @input="updateValue($event, 'successEmailText')"
       />
       <div class="success-text-info">
@@ -35,11 +39,7 @@
         the '${ }' will dissappear from the preview. E.g. 'Hi ${name}...' will become 'Hi name...'
       </div>
       <div class="label" style="margin: 1rem 0">Preview</div>
-      <div
-        class="success-text richText"
-        :class="preview.match(/error/i) ? 'error-text' : 'success-text'"
-        v-html="preview"
-      />
+      <div class="success-text richText" :class="hasError ? 'error-text' : 'success-text'" v-html="preview" />
     </div>
   </div>
 </template>
@@ -82,6 +82,9 @@ export default {
 
       return result;
     },
+    hasError() {
+      return this.preview.match(/error/i);
+    },
   },
 
   methods: {
@@ -97,8 +100,34 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 $gray-200: #edf2f7;
+$gray-500: #a0aec0;
+$gray-600: #718096;
+$gray-700: #4a5568;
+
+.form-fields__table {
+  border: 1px solid white;
+  width: 100%;
+  tbody {
+    tr {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      border-bottom: 1px solid $gray-500;
+      padding: 0.5rem;
+    }
+
+    tr:nth-child(even) {
+      background-color: $gray-700;
+    }
+
+    td.item {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
 
 .label {
   color: white;
@@ -135,5 +164,14 @@ $gray-200: #edf2f7;
 .success-text-info {
   font-style: italic;
   font-size: 0.9rem;
+}
+
+.error .whppt-rich-content {
+  .ProseMirror {
+    border: 1px solid #eb5958;
+  }
+  .ProseMirror:focus {
+    border: 1px solid #eb5958;
+  }
 }
 </style>

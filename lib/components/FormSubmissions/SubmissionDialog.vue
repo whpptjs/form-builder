@@ -2,20 +2,16 @@
   <whppt-dialog :is-active="isActive">
     <div class="form-info">
       <whppt-button class="whppt-filters-button" @click="$emit('close')">Close</whppt-button>
-      <!-- <div v-for="(value, key) in item" :key="key" class="dialog-item">
-        <div class="dialog-key">{{ `${key}: ` }}</div>
-        <div>{{ value }}</div>
-      </div> -->
       <table class="submission-dialog__table">
         <tbody>
-          <tr>
+          <tr class="headers">
             <td class="key">Form Field</td>
             <td class="value">Form Value</td>
           </tr>
           <tr v-for="(value, key) in item" :key="key">
             <td class="key">
               <div>
-                {{ `${key}: ` }}
+                {{ `${key}` }}
               </div>
             </td>
             <td class="value">
@@ -44,11 +40,12 @@ export default {
 
 <style scoped lang="scss">
 $gray-500: #a0aec0;
+$gray-600: #718096;
 $gray-700: #4a5568;
 
 .whppt-filters-button {
   margin-left: auto;
-  margin-bottom: 0.5rem;
+  margin-bottom: 2rem;
 }
 
 .form-info {
@@ -68,6 +65,12 @@ $gray-700: #4a5568;
     }
     tr:nth-child(even) {
       background-color: $gray-700;
+    }
+
+    tr.headers td {
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
     td.key {

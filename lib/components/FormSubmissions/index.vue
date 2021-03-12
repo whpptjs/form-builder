@@ -44,7 +44,13 @@
         </vue-csv-downloader>
       </div>
     </div>
-    <submissions-filters :active="filtersVisible" @updateFilter="updateFilter" @close="filtersVisible = false" />
+    <submissions-filters
+      :active="filtersVisible"
+      :filters="filters"
+      @updateFilter="updateFilter"
+      @clearFilters="clearFilters"
+      @close="filtersVisible = false"
+    />
     <submission-dialog :is-active="dialogActive" :item="selectedItem" @close="dialogActive = false" />
   </div>
 </template>
@@ -81,11 +87,11 @@ export default {
       toDate: undefined,
     },
     headers: [
-      { text: 'Subject', align: 'start', value: 'subject' },
-      { text: 'Identifier', align: 'start', value: 'identifier' },
-      { text: 'Recipient', align: 'start', value: 'recipient' },
-      { text: 'CCs', align: 'start', value: 'ccs' },
-      { text: 'Submitted on', align: 'start', value: 'submittedAt' },
+      { text: 'Form Identifier', align: 'start', value: 'Form Identifier' },
+      { text: 'Email Subject', align: 'start', value: 'Email Subject' },
+      { text: 'Email Recipient', align: 'start', value: 'Email Recipient' },
+      { text: 'Email ccs', align: 'start', value: 'Email ccs' },
+      { text: 'Submitted At', align: 'start', value: 'Submitted At' },
       { text: '', align: 'start', value: 'viewSubmission' },
     ],
     dialogActive: false,
@@ -97,14 +103,14 @@ export default {
       if (!this.formSubmissions) return [];
 
       return map(this.formSubmissions, formSubmission => ({
-        subject: formSubmission.settings.subject || '',
-        identifier: formSubmission.settings.identifier || '',
-        recipient: formSubmission.settings.recipient || '',
-        ccs:
+        'Email Subject': formSubmission.settings.subject || '',
+        'Form Identifier': formSubmission.settings.identifier || '',
+        'Email Recipient': formSubmission.settings.recipient || '',
+        'Email ccs':
           formSubmission.settings.ccs && formSubmission.settings.ccs.length
             ? formSubmission.settings.ccs.join(', ')
             : '',
-        submittedAt: dayjs(formSubmission.createdAt).format('h:mm a, DD/MM/YYYY') || '',
+        'Submitted At': dayjs(formSubmission.createdAt).format('h:mm a, DD/MM/YYYY') || '',
         formFields: formSubmission.form,
       }));
     },
@@ -117,6 +123,7 @@ export default {
         'Email ccs':
           submission.settings.ccs && submission.settings.ccs.length ? submission.settings.ccs.join(', ') : '',
         'Submitted At': dayjs(submission.createdAt).format('h:mm a, DD/MM/YYYY') || '',
+        ...submission.form,
       }));
     },
   },
@@ -144,11 +151,18 @@ export default {
         });
     },
     viewFormInput(item) {
-      this.selectedItem = { ...omit(item, ['formFields']), ...item.formFields };
+      this.selectedItem = {
+        ...omit(item, ['formFields']),
+        ...item.formFields,
+      };
       this.dialogActive = true;
     },
     updateFilter({ field, value }) {
       this.filters[field] = value;
+      this.fetchFormData(true);
+    },
+    clearFilters() {
+      this.filters = { identifier: '', fromDate: undefined, toDate: undefined };
       this.fetchFormData(true);
     },
     exportToCSV() {

@@ -25,6 +25,9 @@
           @input="updateFilters('toDate', $event)"
         />
       </div>
+      <whppt-button class="whppt-filters-button" style="margin-top: 0.5rem" @click="$emit('clearFilters')">
+        Clear Filters
+      </whppt-button>
     </div>
   </whppt-drawer>
 </template>
