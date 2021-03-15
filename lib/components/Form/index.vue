@@ -31,6 +31,7 @@
               <component
                 :is="getComponent(field.type)"
                 :field="field"
+                :value="formValues[field.name]"
                 :show-error="(field.name && field.required && $v.formValues[field.name].$error) || false"
                 @field-updated="updateField"
               />
@@ -43,6 +44,9 @@
         </div>
 
         <div v-if="inEditor" v-custom-form="content" class="whppt-form__form-config">Edit form config</div>
+        <div v-if="inEditor" v-form-success-email="content" class="whppt-form__form-config">
+          Edit success email config
+        </div>
         <div v-if="configError && inEditor">{{ configError }}</div>
         <div v-if="!configError" class="whppt-form__actions flex items-center">
           <button
@@ -192,18 +196,26 @@ export default {
             identifier: this.content.identifier,
             recipient: this.content.recipient,
             ccs: this.content.ccs,
+            successEmailText: this.content.successEmailText,
+            successEmailSubject: this.content.successEmailSubject,
+            submitterEmailField: this.content.submitterEmailField,
           },
           form: this.formValues,
         })
         .then(() => {
           this.loading = false;
           this.success = true;
+          this.clearForm();
         })
         .catch(err => {
           this.loading = false;
           this.success = false;
           this.error = err;
         });
+    },
+    clearForm() {
+      this.$v.$reset();
+      this.formValues = {};
     },
   },
   validations() {
