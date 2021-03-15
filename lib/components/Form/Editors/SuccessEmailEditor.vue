@@ -63,10 +63,8 @@ export default {
       return this.selectedComponent.value;
     },
     requiredFields() {
-      return map(
-        filter(this.selectedContent.fields, field => field.required),
-        field => ({ ...field, name: camelCase(field.name) })
-      );
+      const filteredFields = filter(this.selectedContent.fields, field => field.required);
+      return map(filteredFields, field => ({ ...field, name: camelCase(field.name) }));
     },
     preview() {
       const formValues = {};
