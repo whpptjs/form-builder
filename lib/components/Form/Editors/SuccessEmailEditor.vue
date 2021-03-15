@@ -48,6 +48,7 @@
 import { mapState, mapActions } from 'vuex';
 import { filter, camelCase, map, forEach, template } from 'lodash';
 
+// eslint-disable-next-line
 import WhpptRichText from '@whppt/nuxt/lib/components/ui/RichText/index.vue';
 import WhpptTextInput from '@whppt/nuxt/lib/components/ui/Input.vue';
 import WhpptCheckbox from '@whppt/nuxt/lib/components/ui/Checkbox.vue';
