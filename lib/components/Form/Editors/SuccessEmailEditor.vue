@@ -46,7 +46,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
-import { filter, camelCase, map, forEach, template } from 'lodash';
+import { filter, camelCase, map, forEach } from 'lodash';
 
 // eslint-disable-next-line
 import WhpptRichText from '@whppt/nuxt/lib/components/ui/RichText/index.vue';
@@ -56,7 +56,7 @@ import WhpptCheckbox from '@whppt/nuxt/lib/components/ui/Checkbox.vue';
 export default {
   name: 'CustomFormEditorSuccessEmail',
   components: { WhpptRichText, WhpptTextInput, WhpptCheckbox },
-  data: () => ({ error: false }),
+  data: () => ({ error: false, preview: '' }),
   computed: {
     ...mapState('whppt-nuxt/editor', ['selectedComponent', 'baseAPIUrl']),
     selectedContent() {
@@ -66,26 +66,18 @@ export default {
       const filteredFields = filter(this.selectedContent.fields, field => field.required);
       return map(filteredFields, field => ({ ...field, name: camelCase(field.name) }));
     },
-    preview() {
-      const formValues = {};
-      forEach(this.requiredFields, field => (formValues[field.name] = field.name));
-
-      let result = '';
-      try {
-        const preview = template(this.selectedContent.successEmailText);
-        result = preview(formValues);
-      } catch (err) {
-        result =
-          "Error, something went wrong; a confirmation email won't be sent. Try checking the form fields you're using.";
-      }
-
-      return result;
-    },
     hasError() {
       return this.preview.match(/error/i);
     },
   },
-
+  watch: {
+    'selectedContent.successEmailText'() {
+      this.getPreview();
+    },
+  },
+  mounted() {
+    if (this.selectedContent.successEmailText) this.getPreview();
+  },
   methods: {
     ...mapActions('whppt-nuxt/editor', ['setSelectedComponentState', 'pushSelectedComponentState']),
     updateValue(value, path) {
@@ -94,6 +86,19 @@ export default {
     selectedSubmitterEmailField(fieldName) {
       if (this.selectedContent.submitterEmailField === fieldName) this.updateValue('', 'submitterEmailField');
       else this.updateValue(fieldName, 'submitterEmailField');
+    },
+    getPreview() {
+      const formValues = {};
+      forEach(this.requiredFields, field => (formValues[field.name] = field.name));
+
+      return this.$axios
+        .$post(`/api/forms/getSuccessEmailPreview`, {
+          text: this.selectedContent.successEmailText,
+          values: formValues,
+        })
+        .then(preview => {
+          this.preview = preview;
+        });
     },
   },
 };
