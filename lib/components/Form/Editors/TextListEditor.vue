@@ -26,8 +26,10 @@
 <script>
 import { without, clone } from 'lodash';
 import { mapState, mapActions } from 'vuex';
-import WhpptTextInput from '@whppt/nuxt/lib/components/ui/Input.vue';
-import WhpptButton from '@whppt/nuxt/lib/components/ui/Button.vue';
+// eslint-disable-next-line import/no-unresolved
+import WhpptTextInput from '@whppt/nuxt/lib/components/ui/components/Input.vue';
+// eslint-disable-next-line import/no-unresolved
+import WhpptButton from '@whppt/nuxt/lib/components/ui/components/Button.vue';
 import Add from '@whppt/nuxt/lib/components/icons/Add';
 import ArrowDown from '@whppt/nuxt/lib/components/icons/ArrowDown';
 import ArrowUp from '@whppt/nuxt/lib/components/icons/ArrowUp';
@@ -38,7 +40,7 @@ export default {
   components: { WhpptTextInput, WhpptButton, Add, Trash, ArrowDown, ArrowUp },
   props: { label: { type: String, default: '' }, field: { type: String, required: true } },
   computed: {
-    ...mapState('whppt-nuxt/editor', ['selectedComponent']),
+    ...mapState('whppt/editor', ['selectedComponent']),
     selectedContent() {
       return this.selectedComponent.value;
     },
@@ -47,7 +49,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions('whppt-nuxt/editor', ['setSelectedComponentState', 'pushSelectedComponentState']),
+    ...mapActions('whppt/editor', ['setSelectedComponentState', 'pushSelectedComponentState']),
     updateValue(value, path) {
       this.setSelectedComponentState({ value, path });
     },

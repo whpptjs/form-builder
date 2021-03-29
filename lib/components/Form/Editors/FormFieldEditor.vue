@@ -47,12 +47,13 @@
   </div>
 </template>
 <script>
+/* eslint-disable import/no-unresolved */
 import { find } from 'lodash';
 import { mapState, mapActions } from 'vuex';
 
-import WhpptTextInput from '@whppt/nuxt/lib/components/ui/Input.vue';
-import WhpptSelect from '@whppt/nuxt/lib/components/ui/Select.vue';
-import WhpptCheckbox from '@whppt/nuxt/lib/components/ui/Checkbox.vue';
+import WhpptTextInput from '@whppt/nuxt/lib/components/ui/components/Input.vue';
+import WhpptSelect from '@whppt/nuxt/lib/components/ui/components/Select.vue';
+import WhpptCheckbox from '@whppt/nuxt/lib/components/ui/components/Checkbox.vue';
 import TextListEditor from './TextListEditor';
 
 const options = JSON.parse(`<%= JSON.stringify(options) %>`);
@@ -61,7 +62,7 @@ export default {
   name: 'FormFieldEditor',
   components: { WhpptTextInput, WhpptSelect, WhpptCheckbox, TextListEditor },
   computed: {
-    ...mapState('whppt-nuxt/editor', ['selectedComponent', 'baseAPIUrl']),
+    ...mapState('whppt/editor', ['selectedComponent', 'baseAPIUrl']),
     fieldTypes() {
       const fieldTypes = [
         { name: 'Text', value: 'text' },
@@ -86,7 +87,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions('whppt-nuxt/editor', ['setSelectedComponentState', 'pushSelectedComponentState']),
+    ...mapActions('whppt/editor', ['setSelectedComponentState', 'pushSelectedComponentState']),
     updateBoolean(path, value) {
       this.setSelectedComponentState({
         path,
