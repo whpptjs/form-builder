@@ -60,8 +60,10 @@ import { map, omit } from 'lodash';
 import dayjs from 'dayjs';
 import VueCsvDownloader from 'vue-csv-downloader';
 
-import WhpptTable from '@whppt/nuxt/lib/components/ui/Table.vue';
-import WhpptButton from '@whppt/nuxt/lib/components/ui/Button.vue';
+// eslint-disable-next-line import/no-unresolved
+import WhpptTable from '@whppt/nuxt/lib/components/ui/components/Table.vue';
+// eslint-disable-next-line import/no-unresolved
+import WhpptButton from '@whppt/nuxt/lib/components/ui/components/Button.vue';
 
 import SubmissionDialog from './SubmissionDialog.vue';
 import SubmissionsFilters from './SubmissionsFilters.vue';

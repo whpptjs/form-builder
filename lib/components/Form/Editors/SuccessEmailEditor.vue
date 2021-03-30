@@ -49,16 +49,18 @@ import { mapState, mapActions } from 'vuex';
 import { filter, camelCase, map, forEach } from 'lodash';
 
 // eslint-disable-next-line
-import WhpptRichText from '@whppt/nuxt/lib/components/ui/RichText/index.vue';
-import WhpptTextInput from '@whppt/nuxt/lib/components/ui/Input.vue';
-import WhpptCheckbox from '@whppt/nuxt/lib/components/ui/Checkbox.vue';
+import WhpptRichText from '@whppt/nuxt/lib/components/ui/components/RichText/index.vue';
+// eslint-disable-next-line
+import WhpptTextInput from '@whppt/nuxt/lib/components/ui/components/Input.vue';
+// eslint-disable-next-line
+import WhpptCheckbox from '@whppt/nuxt/lib/components/ui/components/Checkbox.vue';
 
 export default {
   name: 'CustomFormEditorSuccessEmail',
   components: { WhpptRichText, WhpptTextInput, WhpptCheckbox },
   data: () => ({ error: false, preview: '' }),
   computed: {
-    ...mapState('whppt-nuxt/editor', ['selectedComponent', 'baseAPIUrl']),
+    ...mapState('whppt/editor', ['selectedComponent', 'baseAPIUrl']),
     selectedContent() {
       return this.selectedComponent.value;
     },
@@ -79,7 +81,7 @@ export default {
     if (this.selectedContent.successEmailText) this.getPreview();
   },
   methods: {
-    ...mapActions('whppt-nuxt/editor', ['setSelectedComponentState', 'pushSelectedComponentState']),
+    ...mapActions('whppt/editor', ['setSelectedComponentState', 'pushSelectedComponentState']),
     updateValue(value, path) {
       this.setSelectedComponentState({ value, path });
     },

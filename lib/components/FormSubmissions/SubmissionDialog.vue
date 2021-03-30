@@ -25,8 +25,10 @@
 </template>
 
 <script>
-import WhpptDialog from '@whppt/nuxt/lib/components/ui/Dialog.vue';
-import WhpptButton from '@whppt/nuxt/lib/components/ui/Button.vue';
+// eslint-disable-next-line import/no-unresolved
+import WhpptDialog from '@whppt/nuxt/lib/components/ui/components/Dialog.vue';
+// eslint-disable-next-line import/no-unresolved
+import WhpptButton from '@whppt/nuxt/lib/components/ui/components/Button.vue';
 
 export default {
   name: 'FormSubmissionDialog',

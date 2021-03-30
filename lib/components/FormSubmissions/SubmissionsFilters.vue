@@ -33,10 +33,14 @@
 </template>
 
 <script>
-import WhpptInput from '@whppt/nuxt/lib/components/ui/Input.vue';
-import WhpptDrawer from '@whppt/nuxt/lib/components/ui/Drawer.vue';
-import WhpptButton from '@whppt/nuxt/lib/components/ui/Button.vue';
-import WhpptDatepicker from '@whppt/nuxt/lib/components/ui/Datepicker.vue';
+// eslint-disable-next-line import/no-unresolved
+import WhpptInput from '@whppt/nuxt/lib/components/ui/components/Input.vue';
+// eslint-disable-next-line import/no-unresolved
+import WhpptDrawer from '@whppt/nuxt/lib/components/ui/components/Drawer.vue';
+// eslint-disable-next-line import/no-unresolved
+import WhpptButton from '@whppt/nuxt/lib/components/ui/components/Button.vue';
+// eslint-disable-next-line import/no-unresolved
+import WhpptDatepicker from '@whppt/nuxt/lib/components/ui/components/Datepicker.vue';
 
 export default {
   name: 'SubmissionsFilters',

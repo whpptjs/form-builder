@@ -34,11 +34,10 @@
 </template>
 
 <script>
+/* eslint-disable import/no-unresolved */
 import { without } from 'lodash';
 import { mapState, mapActions } from 'vuex';
-// eslint-disable-next-line import/no-unresolved
 import WhpptTextInput from '@whppt/nuxt/lib/components/ui/components/Input.vue';
-// eslint-disable-next-line import/no-unresolved
 import WhpptButton from '@whppt/nuxt/lib/components/ui/components/Button.vue';
 import Add from '@whppt/nuxt/lib/components/icons/Add';
 import Trash from '@whppt/nuxt/lib/components/icons/Trash';
