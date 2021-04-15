@@ -153,9 +153,24 @@
 }
 
 /* Multi choice styles*/
-.whppt-form-multiple-choice,
-.whppt-form-multiple-choice__option {
+.whppt-form-multiple-choice {
   margin-bottom: 0.75rem;
+}
+
+.whppt-form-multiple-choice__options {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.whppt-form-multiple-choice__option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  margin-right: 1.25rem;
+}
+
+.whppt-form-multiple-choice__option label {
+  padding-left: 0.5rem;
 }
 
 /* Recaptcha styles */

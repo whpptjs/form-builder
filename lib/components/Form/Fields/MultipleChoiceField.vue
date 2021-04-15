@@ -2,9 +2,11 @@
   <div>
     <div v-form-field="field" v-whppt-editor-enabled="!disableEditing" class="whppt-form-multiple-choice">
       <field-label :field="field" :show-error="showError"></field-label>
-      <div v-for="(option, index) in field.options" :key="index" class="whppt-form-multiple-choice__option">
-        <input :id="`option-${option}`" :checked="values[option]" type="checkbox" @change="check(option)" />
-        <label :for="`option-${option}`">{{ option }}</label>
+      <div class="whppt-form-multiple-choice__options">
+        <div v-for="(option, index) in field.options" :key="index" class="whppt-form-multiple-choice__option">
+          <input :id="`option-${option}`" :checked="values[option]" type="checkbox" @change="check(option)" />
+          <label :for="`option-${option}`">{{ option }}</label>
+        </div>
       </div>
     </div>
   </div>
