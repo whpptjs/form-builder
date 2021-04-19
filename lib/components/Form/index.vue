@@ -211,7 +211,7 @@ export default {
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
               event: 'formSubmission',
-              formName: this.formValues.identifier,
+              formName: this.content.identifier,
             });
           }
         })
