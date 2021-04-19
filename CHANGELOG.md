@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.3](https://github.com/whpptjs/form-builder/compare/v2.1.2...v2.1.3) (2021-04-19)
+
+
+### Bug Fixes
+
+* correct form identifier ([093b8b1](https://github.com/whpptjs/form-builder/commit/093b8b12c64667a23d05aae08d4647770c17ffa4))
+
 ### [2.1.2](https://github.com/whpptjs/form-builder/compare/v2.1.1...v2.1.2) (2021-04-19)
 
 ### [2.0.3](https://github.com/whpptjs/form-builder/compare/v2.1.0...v2.0.3) (2021-04-19)
