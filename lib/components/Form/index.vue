@@ -206,6 +206,14 @@ export default {
           this.loading = false;
           this.success = true;
           this.clearForm();
+
+          if (process.client && this.content.trackInGA) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'formSubmission',
+              formName: this.formValues.identifier,
+            });
+          }
         })
         .catch(err => {
           this.loading = false;
