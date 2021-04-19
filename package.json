@@ -24,8 +24,8 @@
     "test": "yarn lint && jest --passWithNoTests"
   },
   "dependencies": {
-    "@whppt/api-express": "next",
-    "@whppt/nuxt": "next",
+    "@whppt/api-express": "^2.0.0@next",
+    "@whppt/nuxt": "^2.0.0@next",
     "axios": "^0.21.0",
     "lodash": "^4.17.20",
     "nuxt": "2.14.11",
