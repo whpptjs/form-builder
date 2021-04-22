@@ -19,7 +19,9 @@
         </tr>
       </tbody>
     </table>
-    <div v-if="!selectedContent.submitterEmailField" style="margin-top: 0.5rem">To be able to edit the success email message you need to add a email textbox on the form. </div>
+    <div v-if="!selectedContent.submitterEmailField" style="margin-top: 0.5rem">
+      To be able to edit the success email message you need to add a email input on the selected form.
+    </div>
     <div v-if="selectedContent.submitterEmailField" style="margin-top: 0.5rem">
       <whppt-text-input
         id="success-subject"
@@ -37,7 +39,7 @@
       />
       <div class="success-text-info">
         To utilise form fields in the confirmation email text, surround the field name with '${ }'. If done correctly,
-        the '${ }' will dissappear from the preview. E.g. 'Hi ${name}...' will become 'Hi name...'
+        the '${ }' will disappear from the preview. E.g. 'Hi ${name}...' will become 'Hi name...'
       </div>
       <div class="label" style="margin: 1rem 0">Preview</div>
       <div class="success-text richText" :class="hasError ? 'error-text' : 'success-text'" v-html="preview" />
@@ -46,14 +48,12 @@
 </template>
 
 <script>
+/* eslint-disable import/no-unresolved */
 import { mapState, mapActions } from 'vuex';
 import { filter, camelCase, map, forEach } from 'lodash';
 
-// eslint-disable-next-line
 import WhpptRichText from '@whppt/nuxt/lib/components/ui/components/RichText/index.vue';
-// eslint-disable-next-line
 import WhpptTextInput from '@whppt/nuxt/lib/components/ui/components/Input.vue';
-// eslint-disable-next-line
 import WhpptCheckbox from '@whppt/nuxt/lib/components/ui/components/Checkbox.vue';
 
 export default {
@@ -108,6 +108,7 @@ export default {
 </script>
 
 <style lang="scss">
+// TODO: this should be either in the main stylesheet or scoped
 $gray-200: #edf2f7;
 $gray-500: #a0aec0;
 $gray-600: #718096;
