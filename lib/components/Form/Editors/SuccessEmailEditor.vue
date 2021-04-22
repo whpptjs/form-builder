@@ -19,6 +19,7 @@
         </tr>
       </tbody>
     </table>
+    <div v-if="!selectedContent.submitterEmailField" style="margin-top: 0.5rem">To be able to edit the success email message you need to add a email textbox on the form. </div>
     <div v-if="selectedContent.submitterEmailField" style="margin-top: 0.5rem">
       <whppt-text-input
         id="success-subject"
