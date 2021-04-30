@@ -2,6 +2,11 @@
   <div class="whppt-dashboard__wrapper">
     <div class="whppt-dashboard__form">
       <div class="whppt-filters-wrapper">
+        <whppt-checkbox
+          v-model="formPublished"
+          label="Show draft Submissions"
+          @change="fetchFormData(true)"
+        ></whppt-checkbox>
         <whppt-button v-if="!filtersVisible" class="whppt-filters-button" @click="filtersVisible = true">
           Show Filters
         </whppt-button>
@@ -64,7 +69,8 @@ import VueCsvDownloader from 'vue-csv-downloader';
 import WhpptTable from '@whppt/nuxt/lib/components/ui/components/Table.vue';
 // eslint-disable-next-line import/no-unresolved
 import WhpptButton from '@whppt/nuxt/lib/components/ui/components/Button.vue';
-
+// eslint-disable-next-line import/no-unresolved
+import WhpptCheckbox from '@whppt/nuxt/lib/components/ui/components/Checkbox.vue';
 import SubmissionDialog from './SubmissionDialog.vue';
 import SubmissionsFilters from './SubmissionsFilters.vue';
 
@@ -74,6 +80,7 @@ export default {
     VueCsvDownloader,
     WhpptTable,
     WhpptButton,
+    WhpptCheckbox,
     SubmissionDialog,
     SubmissionsFilters,
   },
@@ -99,6 +106,7 @@ export default {
     dialogActive: false,
     selectedItem: undefined,
     allSubmissions: [],
+    formPublished: false,
   }),
   computed: {
     items() {
@@ -138,6 +146,7 @@ export default {
 
       const params = {
         ...this.filters,
+        formPublished: this.formPublished,
         limit: this.limit,
         page: this.currentPage,
       };
@@ -177,6 +186,11 @@ export default {
 <style lang="scss" scoped>
 $primary-600: #5a67d8;
 
+.whppt-filters-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .whppt-filters-button {
   margin-left: auto;
   margin-bottom: 0.5rem;
