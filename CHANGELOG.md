@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.5](https://github.com/whpptjs/form-builder/compare/v2.1.4...v2.1.5) (2021-04-30)
+
+
+### Features
+
+* add show draft checkbox in form submissions' ([6e3fab8](https://github.com/whpptjs/form-builder/commit/6e3fab89da23c6a4f4232d77717d89cddad78ce5))
+
 ### [2.1.4](https://github.com/whpptjs/form-builder/compare/v2.1.3...v2.1.4) (2021-04-22)
 
 ### [2.1.3](https://github.com/whpptjs/form-builder/compare/v2.1.2...v2.1.3) (2021-04-19)
