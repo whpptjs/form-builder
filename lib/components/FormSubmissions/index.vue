@@ -2,11 +2,7 @@
   <div class="whppt-dashboard__wrapper">
     <div class="whppt-dashboard__form">
       <div class="whppt-filters-wrapper">
-        <whppt-checkbox
-          v-model="formPublished"
-          label="Show draft Submissions"
-          @change="fetchFormData(true)"
-        ></whppt-checkbox>
+        <whppt-checkbox v-model="showDraftSubmissions" label="Show draft Submissions" @change="fetchFormData(true)" />
         <whppt-button v-if="!filtersVisible" class="whppt-filters-button" @click="filtersVisible = true">
           Show Filters
         </whppt-button>
@@ -106,7 +102,7 @@ export default {
     dialogActive: false,
     selectedItem: undefined,
     allSubmissions: [],
-    formPublished: false,
+    showDraftSubmissions: false,
   }),
   computed: {
     items() {
@@ -146,7 +142,7 @@ export default {
 
       const params = {
         ...this.filters,
-        formPublished: this.formPublished,
+        showDraftSubmissions: this.showDraftSubmissions || undefined,
         limit: this.limit,
         page: this.currentPage,
       };
@@ -190,6 +186,8 @@ $primary-600: #5a67d8;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-height: 3rem;
+  margin-bottom: 0.5rem;
 }
 .whppt-filters-button {
   margin-left: auto;
