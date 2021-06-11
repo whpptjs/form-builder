@@ -44,7 +44,11 @@
         </div>
 
         <div v-if="inEditor" v-custom-form="content" class="whppt-form__form-config">Edit form config</div>
-        <div v-if="inEditor" v-form-success-email="content" class="whppt-form__form-config">
+        <div
+          v-if="inEditor"
+          v-form-success-email="{ content, formFields: content.fields }"
+          class="whppt-form__form-config"
+        >
           Edit success email config
         </div>
         <div v-if="configError && inEditor">{{ configError }}</div>

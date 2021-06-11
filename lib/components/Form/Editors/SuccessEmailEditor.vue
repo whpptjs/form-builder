@@ -27,7 +27,7 @@
         id="success-subject"
         :value="selectedContent.successEmailSubject"
         label="Success Email Subject"
-        @input="updateValue($event, 'successEmailSubject')"
+        @input="updateValue($event, 'content.successEmailSubject')"
       />
       <div class="label" style="margin-top: 1rem">Confirmation Email Text</div>
       <whppt-rich-text
@@ -35,7 +35,7 @@
         :value="selectedContent.successEmailText"
         hide-headers
         :class="{ error: hasError }"
-        @input="updateValue($event, 'successEmailText')"
+        @input="updateValue($event, 'content.successEmailText')"
       />
       <div class="success-text-info">
         To utilise form fields in the confirmation email text, surround the field name with '${ }'. If done correctly,
@@ -63,10 +63,13 @@ export default {
   computed: {
     ...mapState('whppt/editor', ['selectedComponent', 'baseAPIUrl']),
     selectedContent() {
-      return this.selectedComponent.value;
+      return this.selectedComponent.value.content;
+    },
+    formFields() {
+      return this.selectedComponent.value.formFields;
     },
     requiredFields() {
-      const filteredFields = filter(this.selectedContent.fields, field => field.required);
+      const filteredFields = filter(this.formFields, field => field.required);
       return map(filteredFields, field => ({ ...field, name: camelCase(field.name) }));
     },
     hasError() {
@@ -87,8 +90,8 @@ export default {
       this.setSelectedComponentState({ value, path });
     },
     selectedSubmitterEmailField(fieldName) {
-      if (this.selectedContent.submitterEmailField === fieldName) this.updateValue('', 'submitterEmailField');
-      else this.updateValue(fieldName, 'submitterEmailField');
+      if (this.selectedContent.submitterEmailField === fieldName) this.updateValue('', 'content.submitterEmailField');
+      else this.updateValue(fieldName, 'content.submitterEmailField');
     },
     getPreview() {
       const formValues = {};
