@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.8](https://github.com/whpptjs/form-builder/compare/v2.1.7...v2.1.8) (2021-06-11)
+
+
+### Features
+
+* seperate passing of form fields and form content into the successEmailEditor ([d689ad4](https://github.com/whpptjs/form-builder/commit/d689ad42983b722f689fee33d1668f28ea269721))
+
 ### [2.1.7](https://github.com/whpptjs/form-builder/compare/v2.1.6...v2.1.7) (2021-05-10)
 
 ### [2.1.6](https://github.com/whpptjs/form-builder/compare/v2.1.5...v2.1.6) (2021-05-10)
