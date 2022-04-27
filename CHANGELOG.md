@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.9](https://github.com/whpptjs/form-builder/compare/v2.1.8...v2.1.9) (2022-04-27)
+
+
+### Bug Fixes
+
+* include jest ([b00c1b3](https://github.com/whpptjs/form-builder/commit/b00c1b3bc2fc1fafcfd72afcb91812c6f353f468))
+* remove unneeded packages and fix linting ([3891ff3](https://github.com/whpptjs/form-builder/commit/3891ff31c1af0ec98680249f458a5122e2810cd7))
+
 ### [2.1.8](https://github.com/whpptjs/form-builder/compare/v2.1.7...v2.1.8) (2021-06-11)
 
 
