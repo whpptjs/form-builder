@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import VueRecaptcha from 'vue-recaptcha';
+import { VueRecaptcha } from 'vue-recaptcha';
 import FieldLabel from './FieldLabel';
 
 const options = JSON.parse(`<%= JSON.stringify(options) %>`);
