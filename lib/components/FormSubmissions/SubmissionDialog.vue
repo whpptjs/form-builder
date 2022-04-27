@@ -25,9 +25,7 @@
 </template>
 
 <script>
-// eslint-disable-next-line import/no-unresolved
 import WhpptDialog from '@whppt/nuxt/lib/components/ui/components/Dialog.vue';
-// eslint-disable-next-line import/no-unresolved
 import WhpptButton from '@whppt/nuxt/lib/components/ui/components/Button.vue';
 
 export default {

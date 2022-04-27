@@ -47,7 +47,6 @@
   </div>
 </template>
 <script>
-/* eslint-disable import/no-unresolved */
 import { find } from 'lodash';
 import { mapState, mapActions } from 'vuex';
 

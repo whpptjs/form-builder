@@ -48,7 +48,6 @@
 </template>
 
 <script>
-/* eslint-disable import/no-unresolved */
 import { mapState, mapActions } from 'vuex';
 import { filter, camelCase, map, forEach } from 'lodash';
 

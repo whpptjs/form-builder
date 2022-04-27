@@ -24,7 +24,6 @@
 </template>
 
 <script>
-/* eslint-disable import/no-unresolved */
 import { without, clone } from 'lodash';
 import { mapState, mapActions } from 'vuex';
 import WhpptTextInput from '@whppt/nuxt/lib/components/ui/components/Input.vue';

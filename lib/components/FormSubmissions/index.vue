@@ -61,11 +61,8 @@ import { map, omit } from 'lodash';
 import dayjs from 'dayjs';
 import VueCsvDownloader from 'vue-csv-downloader';
 
-// eslint-disable-next-line import/no-unresolved
 import WhpptTable from '@whppt/nuxt/lib/components/ui/components/Table.vue';
-// eslint-disable-next-line import/no-unresolved
 import WhpptButton from '@whppt/nuxt/lib/components/ui/components/Button.vue';
-// eslint-disable-next-line import/no-unresolved
 import WhpptCheckbox from '@whppt/nuxt/lib/components/ui/components/Checkbox.vue';
 import SubmissionDialog from './SubmissionDialog.vue';
 import SubmissionsFilters from './SubmissionsFilters.vue';
