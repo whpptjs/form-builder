@@ -19,8 +19,8 @@
     "start": "nuxt start example",
     "lint": "eslint --ext .js,.vue .",
     "release:patch": "yarn test && standard-version --release-as patch && yarn publish && git push --follow-tags",
-    "release:minor": "yarn test && standard-version --release-as minor && git push --follow-tags && yarn publish",
-    "release:major": "yarn test && standard-version --release-as major && git push --follow-tags && yarn publish",
+    "release:minor": "yarn test && standard-version --release-as minor && yarn publish && git push --follow-tags",
+    "release:major": "yarn test && standard-version --release-as major && yarn publish && git push --follow-tags",
     "test": "yarn lint && jest --passWithNoTests"
   },
   "dependencies": {
