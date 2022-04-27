@@ -46,6 +46,7 @@
     "glob": "^8.0.1",
     "husky": "latest",
     "jest": "^28.0.2",
+    "lint-staged": "^12.4.1",
     "nuxt-edge": "latest",
     "prettier": "^2.1.2",
     "standard-version": "latest"
