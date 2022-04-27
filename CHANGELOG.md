@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.12](https://github.com/whpptjs/form-builder/compare/v2.1.11...v2.1.12) (2022-04-27)
+
+
+### Bug Fixes
+
+* import recaptcha from named export ([ff6bbc0](https://github.com/whpptjs/form-builder/commit/ff6bbc02b24e6e5c3395efdeb26b7d3bc06c0e69))
+
 ### [2.1.10](https://github.com/whpptjs/form-builder/compare/v2.1.9...v2.1.10) (2022-04-27)
 
 
