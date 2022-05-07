@@ -38,7 +38,6 @@ export default {
       }
     },
     isChecked(option) {
-      console.log('🚀 ~ file: MultipleChoiceField.vue ~ line 42 ~ isChecked ~ this.value', this.value);
       const selectedValues = this.value.split(';;');
       return !!selectedValues.find(v => v === option);
     },
