@@ -39,9 +39,9 @@ import FormMultipleChoiceField from './Fields/MultipleChoiceField';
 import FormSelectField from './Fields/SelectField';
 import FormTextArea from './Fields/TextArea';
 import FormTextField from './Fields/TextField';
-import FormPhoneField from './fields/PhoneField';
-import FormDateField from './fields/DateField';
-import FormRecaptcha from './fields/Recaptcha';
+import FormPhoneField from './Fields/PhoneField';
+import FormDateField from './Fields/DateField';
+import FormRecaptcha from './Fields/Recaptcha';
 
 export default {
   name: 'CustomFormFields',
