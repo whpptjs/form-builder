@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.13](https://github.com/whpptjs/form-builder/compare/v2.1.12...v2.1.13) (2022-05-07)
+
+
+### Features
+
+* add vuelidate package ([4a95bd3](https://github.com/whpptjs/form-builder/commit/4a95bd361b3a7a2c9e2f4d996a0092c2dcda4834))
+* improved validation error messages ([30a6342](https://github.com/whpptjs/form-builder/commit/30a6342d1ec46006ff912fc14243a1f6693818a5))
+
+
+### Bug Fixes
+
+* release scripts to push to git after publishing ([7326c64](https://github.com/whpptjs/form-builder/commit/7326c64b28a6e7fa7a9aa12cfa5751e7123997e6))
+
 ### [2.1.12](https://github.com/whpptjs/form-builder/compare/v2.1.11...v2.1.12) (2022-04-27)
 
 
