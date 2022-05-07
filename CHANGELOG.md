@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.16](https://github.com/whpptjs/form-builder/compare/v2.1.15...v2.1.16) (2022-05-07)
+
+
+### Bug Fixes
+
+* remove comments ([d5f7ed3](https://github.com/whpptjs/form-builder/commit/d5f7ed351c1ac5e11e0f60a5d42b65ce08797fac))
+
 ### [2.1.15](https://github.com/whpptjs/form-builder/compare/v2.1.14...v2.1.15) (2022-05-07)
 
 
