@@ -1,7 +1,8 @@
 <template>
   <div v-if="siteKey" v-form-field="field" v-whppt-editor-enabled="!disableEditing" class="whppt-form-captcha">
-    <field-label :field="field" :show-error="showError"></field-label>
+    <field-label :field="field" :validations="validations"></field-label>
     <vue-recaptcha
+      ref="recaptcha"
       :sitekey="siteKey"
       :load-recaptcha-script="true"
       @verify="onVerify"
@@ -13,30 +14,31 @@
 
 <script>
 import { VueRecaptcha } from 'vue-recaptcha';
-import FieldLabel from './FieldLabel';
-
-const options = JSON.parse(`<%= JSON.stringify(options) %>`);
+import FieldLabel from '@whppt/form-builder/lib/components/Form/Fields/FieldLabel';
 
 export default {
   name: 'Recaptcha',
   components: { VueRecaptcha, FieldLabel },
   props: {
     field: { type: Object, default: () => ({}) },
-    showError: { type: Boolean, default: false },
+    validations: { type: Object, default: () => ({}) },
+    value: { type: String, default: '' },
     disableEditing: { type: Boolean, default: false },
+    clearRecaptcha: { type: Boolean, default: false },
   },
-  data: () => ({
-    value: '',
-    options,
-  }),
+
   computed: {
     siteKey() {
-      return this.$config.recaptcha_sitekey || options.recaptcha_sitekey;
+      return this.$config.recaptcha_sitekey;
+    },
+  },
+  watch: {
+    clearRecaptcha() {
+      this.reset();
     },
   },
   methods: {
     onVerify(response) {
-      this.value = response;
       this.$emit('field-updated', { name: this.field.name, value: response });
     },
     onExpired() {
@@ -44,6 +46,10 @@ export default {
     },
     onError() {
       this.$emit('error');
+    },
+    reset() {
+      this.$emit('field-updated', { name: this.field.name, value: '' });
+      this.$refs.recaptcha.reset();
     },
   },
 };

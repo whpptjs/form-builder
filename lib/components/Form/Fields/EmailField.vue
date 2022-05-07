@@ -1,11 +1,7 @@
 <template>
   <div>
     <div v-form-field="field" v-whppt-editor-enabled="!disableEditing" class="whppt-form-email">
-      <field-label
-        :field="field"
-        :show-error="showError"
-        error-message="A valid email address is required"
-      ></field-label>
+      <field-label :field="field" :validations="validations"></field-label>
       <input
         v-whppt-text="field"
         v-whppt-editor-enabled="!disableEditing"
@@ -26,8 +22,8 @@ export default {
   components: { FieldLabel },
   props: {
     field: { type: Object, default: () => ({}) },
+    validations: { type: Object, default: () => ({}) },
     value: { type: String, default: '' },
-    showError: { type: Boolean, default: false },
     disableEditing: { type: Boolean, default: false },
   },
 };

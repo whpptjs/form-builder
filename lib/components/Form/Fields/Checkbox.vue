@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-form-field="field" v-whppt-editor-enabled="!disableEditing" class="whppt-form-checkbox">
-      <field-label :field="field" :show-error="showError"></field-label>
+      <field-label :field="field" :validations="validations"></field-label>
       <input :id="field" type="checkbox" :checked="value" @change="check" />
     </div>
   </div>
@@ -15,7 +15,7 @@ export default {
   components: { FieldLabel },
   props: {
     field: { type: Object, default: () => ({}) },
-    showError: { type: Boolean, default: false },
+    validations: { type: Object, default: () => ({}) },
     value: { type: Boolean, default: false },
     disableEditing: { type: Boolean, default: false },
   },

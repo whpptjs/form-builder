@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-form-field="field" v-whppt-editor-enabled="!disableEditing" class="whppt-form-select">
-      <field-label :field="field" :show-error="showError"></field-label>
+      <field-label :field="field" :validations="validations"></field-label>
       <select :value="value" @change="$emit('field-updated', { name: field.name, value: $event.target.value })">
         <option v-if="field.placeholder" value="" disabled selected>
           {{ field.placeholder }}
@@ -23,7 +23,7 @@ export default {
   props: {
     field: { type: Object, default: () => ({}) },
     value: { type: String, default: '' },
-    showError: { type: Boolean, default: false },
+    validations: { type: Object, default: () => ({}) },
     disableEditing: { type: Boolean, default: false },
   },
   mounted() {

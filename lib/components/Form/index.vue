@@ -10,15 +10,22 @@
           class="whppt-form__title"
           v-html="content.title && content.title !== '<p></p>' ? content.title : 'Form Title'"
         />
-        <div
+        <div v-if="!visibleFields.length" class="whppt-form__field-config">Add fields</div>
+        <form-fields
+          :form-values="formValues"
+          :fields="content.fields"
+          :validations="$v"
+          :clear-recaptcha="clearRecaptcha"
+          @field-updated="updateField"
+        />
+        <!-- <div
           v-whppt-list="{ data: content, addNew }"
           data-property="fields"
           :class="{ 'in-editor': inEditor }"
           class="whppt-form__fields"
         >
-          <div v-if="!content.fields.length" class="whppt-form__field-config">Add fields</div>
           <div
-            v-for="(field, index) in content.fields"
+            v-for="(field, index) in visibleFields"
             :key="index"
             :class="
               field.halfWidth || field.type === 'checkbox' || field.type === 'multipleChoice'
@@ -32,12 +39,13 @@
                 :is="getComponent(field.type)"
                 :field="field"
                 :value="formValues[field.name]"
-                :show-error="(field.name && field.required && $v.formValues[field.name].$error) || false"
+                :show-error="(field.name && $v.formValues[field.name].$error) || false"
+                :validations="$v && $v.formValues && $v.formValues[field.name]"
                 @field-updated="updateField"
               />
             </div>
           </div>
-        </div>
+        </div> -->
         <div v-if="error" class="whppt-form__validation">
           <span class="whppt-form__validation--error">{{ error.response.data.error.message || error.message }}</span>
           <div v-for="e in error.validationErrors" :key="e">{{ e }}</div>
@@ -84,6 +92,7 @@ import { mapActions, mapState } from 'vuex';
 import { validationMixin } from 'vuelidate';
 import { required, email } from 'vuelidate/lib/validators';
 
+import FormFields from './FormFields';
 import FormCheckbox from './Fields/Checkbox';
 import FormEmailField from './Fields/EmailField';
 import FormMultipleChoiceField from './Fields/MultipleChoiceField';
@@ -95,6 +104,7 @@ import FormRecaptcha from './Fields/Recaptcha';
 export default {
   name: 'WhpptFormsForm',
   components: {
+    FormFields,
     FormCheckbox,
     FormEmailField,
     FormMultipleChoiceField,
@@ -114,11 +124,15 @@ export default {
     success: false,
     loading: false,
     error: undefined,
+    clearRecaptcha: false,
   }),
   computed: {
     ...mapState('whppt/editor', ['activeMenuItem']),
     inEditor() {
       return this.activeMenuItem === 'select';
+    },
+    visibleFields() {
+      return this.content.fields.filter(f => !(f.hidden && f.hidden(this.formValues)));
     },
     computedClasses() {
       const _classes = { container: this.container };
@@ -228,6 +242,8 @@ export default {
     clearForm() {
       this.$v.$reset();
       this.formValues = {};
+      this.clearRecaptcha = !this.clearRecaptcha;
+      this.success = false;
     },
   },
   validations() {

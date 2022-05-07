@@ -1,6 +1,6 @@
 <template>
   <div v-form-field="field" v-whppt-editor-enabled="!disableEditing" class="whppt-form-textarea">
-    <field-label :field="field" :show-error="showError"></field-label>
+    <field-label :field="field" :validations="validations"></field-label>
     <textarea
       v-whppt-text="field"
       v-whppt-editor-enabled="!disableEditing"
@@ -22,7 +22,7 @@ export default {
   props: {
     field: { type: Object, default: () => ({}) },
     value: { type: String, default: '' },
-    showError: { type: Boolean, default: false },
+    validations: { type: Object, default: () => ({}) },
     disableEditing: { type: Boolean, default: false },
   },
 };
