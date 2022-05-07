@@ -91,27 +91,12 @@ import { forEach, uniqBy, find } from 'lodash';
 import { mapActions, mapState } from 'vuex';
 import { validationMixin } from 'vuelidate';
 import { required, email } from 'vuelidate/lib/validators';
-
 import FormFields from './FormFields';
-import FormCheckbox from './Fields/Checkbox';
-import FormEmailField from './Fields/EmailField';
-import FormMultipleChoiceField from './Fields/MultipleChoiceField';
-import FormSelectField from './Fields/SelectField';
-import FormTextArea from './Fields/TextArea';
-import FormTextField from './Fields/TextField';
-import FormRecaptcha from './Fields/Recaptcha';
 
 export default {
   name: 'WhpptFormsForm',
   components: {
     FormFields,
-    FormCheckbox,
-    FormEmailField,
-    FormMultipleChoiceField,
-    FormSelectField,
-    FormTextArea,
-    FormTextField,
-    FormRecaptcha,
   },
   mixins: [validationMixin],
   props: {
@@ -169,26 +154,6 @@ export default {
           halfWidth: false,
         },
       });
-    },
-    getComponent(type) {
-      switch (type) {
-        case 'text':
-          return 'FormTextField';
-        case 'textArea':
-          return 'FormTextArea';
-        case 'checkbox':
-          return 'FormCheckbox';
-        case 'select':
-          return 'FormSelectField';
-        case 'email':
-          return 'FormEmailField';
-        case 'multipleChoice':
-          return 'FormMultipleChoiceField';
-        case 'captcha':
-          return 'FormRecaptcha';
-        default:
-          return 'FormTextField';
-      }
     },
     updateField(event) {
       if (!event.name) return;

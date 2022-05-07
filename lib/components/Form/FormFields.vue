@@ -33,15 +33,15 @@
 <script>
 import { mapGetters } from 'vuex';
 
-import FormCheckbox from '@whppt/form-builder/lib/components/Form/Fields/Checkbox';
-import FormEmailField from '@whppt/form-builder/lib/components/Form/Fields/EmailField';
-import FormMultipleChoiceField from '@whppt/form-builder/lib/components/Form/Fields/MultipleChoiceField';
-import FormSelectField from '@whppt/form-builder/lib/components/Form/Fields/SelectField';
-import FormTextArea from '@whppt/form-builder/lib/components/Form/Fields/TextArea';
-import FormTextField from '@whppt/form-builder/lib/components/Form/Fields/TextField';
-import FormPhoneField from '@whppt/form-builder/lib/components/Form/fields/PhoneField';
-import FormRecaptcha from '@whppt/form-builder/lib/components/Form/fields/Recaptcha';
-import FormDateField from '@whppt/form-builder/lib/components/Form/fields/DateField';
+import FormCheckbox from './Fields/Checkbox';
+import FormEmailField from './Fields/EmailField';
+import FormMultipleChoiceField from './Fields/MultipleChoiceField';
+import FormSelectField from './Fields/SelectField';
+import FormTextArea from './Fields/TextArea';
+import FormTextField from './Fields/TextField';
+import FormPhoneField from './fields/PhoneField';
+import FormDateField from './fields/DateField';
+import FormRecaptcha from './fields/Recaptcha';
 
 export default {
   name: 'CustomFormFields',
