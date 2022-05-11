@@ -10,13 +10,21 @@
           class="whppt-form__title"
           v-html="content.title && content.title !== '<p></p>' ? content.title : 'Form Title'"
         />
-        <div v-if="!visibleFields.length" class="whppt-form__field-config">Add fields</div>
+        <div
+          v-if="inEditor"
+          class="whppt-form__field-config"
+          v-whppt-list="{ data: content, addNew }"
+          data-property="fields"
+        >
+          Manage fields
+        </div>
         <form-fields
           :form-values="formValues"
           :fields="content.fields"
           :validations="$v"
           :clear-recaptcha="clearRecaptcha"
           @field-updated="updateField"
+          :disable-editing="false"
         />
         <!-- <div
           v-whppt-list="{ data: content, addNew }"
@@ -164,6 +172,8 @@ export default {
       this.formValues.recaptcha = response;
     },
     submit() {
+      if (this.inEditor) return;
+
       this.$v.$touch();
       if (this.$v.$invalid) return;
 

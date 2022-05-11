@@ -15,7 +15,7 @@
         <component
           :is="getComponent(field.type)"
           :field="field"
-          :disable-editing="true"
+          :disable-editing="disableEditing"
           :value="formValues[field.name]"
           :show-error="
             (field.name && validations.formValues[field.name] && validations.formValues[field.name].$error) || false
@@ -61,6 +61,7 @@ export default {
     fields: { type: Array, default: () => [] },
     validations: { type: Object, default: () => ({}) },
     clearRecaptcha: { type: Boolean, default: false },
+    disableEditing: { type: Boolean, default: true },
   },
   computed: {
     ...mapGetters(['inEditor']),
