@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.19](https://github.com/whpptjs/form-builder/compare/v2.1.18...v2.1.19) (2022-05-17)
+
+
+### Bug Fixes
+
+* fields to set focus on label click ([b6df3fb](https://github.com/whpptjs/form-builder/commit/b6df3fb6642c70845406446d370e46e1b66f70be))
+
 ### [2.1.18](https://github.com/whpptjs/form-builder/compare/v2.1.17...v2.1.18) (2022-05-17)
 
 
