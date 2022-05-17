@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.18](https://github.com/whpptjs/form-builder/compare/v2.1.17...v2.1.18) (2022-05-17)
+
+
+### Features
+
+* add error class to the field components ([82e0f61](https://github.com/whpptjs/form-builder/commit/82e0f614add74117b0d6518ec61b869a60270a83))
+
 ### [2.1.17](https://github.com/whpptjs/form-builder/compare/v2.1.16...v2.1.17) (2022-05-11)
 
 
