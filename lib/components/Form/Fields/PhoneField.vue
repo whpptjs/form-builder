@@ -1,8 +1,9 @@
 <template>
   <div class="whppt-form-phone">
-    <field-label :field="field" :validations="validations" />
+    <field-label :field="field" :validations="validations" :id="field.name" />
     <input
       v-mask="'#### ### ###'"
+      :id="field.name"
       :value="value"
       :placeholder="field.placeholder"
       @input="$emit('field-updated', { name: field.name, value: $event.target.value })"

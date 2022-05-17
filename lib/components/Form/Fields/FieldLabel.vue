@@ -1,11 +1,11 @@
 <template>
-  <div class="whppt-form-label">
+  <label class="whppt-form-label" :for="id">
     <div v-if="label || inEditor" class="whppt-form-label-text">{{ label }}</div>
     <div v-else class="whppt-form-label-text"></div>
     <span class="whppt-form-label-error" :class="{ 'whppt-form-label-error--active': showError }">
       {{ errorMessage }}
     </span>
-  </div>
+  </label>
 </template>
 
 <script>
@@ -17,6 +17,7 @@ export default {
   props: {
     field: { type: Object, default: () => ({}) },
     validations: { type: Object, default: () => ({}) },
+    id: { type: String, default: '' },
     // showError: { type: Boolean, default: false },
     // errorMessage: { type: String, default: '' },
   },

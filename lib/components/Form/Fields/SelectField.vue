@@ -1,8 +1,12 @@
 <template>
   <div>
     <div v-form-field="field" v-whppt-editor-enabled="!disableEditing" class="whppt-form-select">
-      <field-label :field="field" :validations="validations"></field-label>
-      <select :value="value" @change="$emit('field-updated', { name: field.name, value: $event.target.value })">
+      <field-label :field="field" :validations="validations" :id="field.name"></field-label>
+      <select
+        :value="value"
+        :id="field.name"
+        @change="$emit('field-updated', { name: field.name, value: $event.target.value })"
+      >
         <option v-if="field.placeholder" value="" disabled selected>
           {{ field.placeholder }}
         </option>

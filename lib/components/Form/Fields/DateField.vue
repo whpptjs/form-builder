@@ -1,6 +1,6 @@
 <template>
   <div class="whppt-form-phone">
-    <field-label :field="field" :validations="validations" />
+    <field-label :field="field" :validations="validations" :id="field.name" />
     <client-only>
       <v-date-picker
         v-if="browser.name !== 'ie'"
@@ -10,10 +10,12 @@
         :popover="{ visibility: 'click' }"
         class="date-field"
         @input="updateDate"
+        :id="field.name"
       />
       <input
         v-else
         v-mask="'##/##/####'"
+        :id="field.name"
         :value="value"
         :placeholder="field.placeholder"
         @input="$emit('field-updated', { name: field.name, value: $event.target.value })"
