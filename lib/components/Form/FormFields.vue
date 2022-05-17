@@ -23,6 +23,7 @@
           :validations="validations && validations.formValues && validations.formValues[field.name]"
           :clear-recaptcha="clearRecaptcha"
           @field-updated="$emit('field-updated', $event)"
+          :class="{ 'whppt-form-field--error': showError }"
         />
         <slot :field="field" />
       </div>
@@ -67,6 +68,9 @@ export default {
     ...mapGetters(['inEditor']),
     visibleFields() {
       return this.fields.filter(f => !(f.hidden && f.hidden(this.formValues)));
+    },
+    showError() {
+      return this.validations.$error || false;
     },
   },
   methods: {
