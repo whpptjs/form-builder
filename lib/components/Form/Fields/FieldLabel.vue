@@ -1,5 +1,5 @@
 <template>
-  <label class="whppt-form-label" :for="id">
+  <label class="whppt-form-label" :for="inEditor ? '' : id">
     <div v-if="label || inEditor" class="whppt-form-label-text">{{ label }}</div>
     <div v-else class="whppt-form-label-text"></div>
     <span class="whppt-form-label-error" :class="{ 'whppt-form-label-error--active': showError }">
@@ -22,7 +22,7 @@ export default {
     // errorMessage: { type: String, default: '' },
   },
   computed: {
-    ...mapState('whppt/editor', ['activeMenuItem']),
+    ...mapState('whppt/editor', ['activeMenuItem', 'inEditor']),
     inEditor() {
       return this.activeMenuItem === 'select';
     },
