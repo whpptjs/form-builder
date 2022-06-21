@@ -1,9 +1,8 @@
 <template>
   <div>
     <div v-form-field="field" v-whppt-editor-enabled="!disableEditing" class="whppt-form-checkbox">
-      <field-label :field="field" :validations="validations" :id="field.name"></field-label>
-      <!-- <label :for="field.identifier">{{ label }}</label> -->
       <input :id="field.name" type="checkbox" :checked="value" @change="check" />
+      <field-label :field="field" :validations="validations" :id="field.name"></field-label>
     </div>
   </div>
 </template>
