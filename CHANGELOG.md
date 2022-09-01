@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/whpptjs/form-builder/compare/v2.1.22...v2.2.0) (2022-09-01)
+
 ### [2.1.21](https://github.com/whpptjs/form-builder/compare/v2.1.20...v2.1.21) (2022-06-21)
 
 ### [2.1.20](https://github.com/whpptjs/form-builder/compare/v2.1.19...v2.1.20) (2022-06-15)
