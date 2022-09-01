@@ -39,6 +39,7 @@ export default {
       return this.validations.$error || false;
     },
     errorMessage() {
+      if (!this.field.required) return '';
       if (!has(this.field, 'message')) this.getFieldBasedMessages();
       const msg = typeof this.field.message === 'function' ? this.field.message(this.validations) : this.field.message;
       return msg || this.getFieldBasedMessages();
@@ -50,7 +51,6 @@ export default {
       return 'This field is required';
     },
     getMaxLengthMessage() {
-      // console.log('🚀 ~ file: FieldLabel.vue this.validations', this.validations);
       const maxLengthMsg = size => `This field cannot exceed ${size} characters`;
       if (!(this.validations.$params && this.validations.$params.maxLength)) return 'This field is too long';
       if (this.field.maxLength) return maxLengthMsg(this.validations.$params.maxLength.max);

@@ -150,6 +150,10 @@
   color: rgba(245, 101, 101, 1);
   text-align: right;
   font-size: 0.65rem;
+  display: none;
+}
+.whppt-form-label-error--active {
+  display: block;
 }
 
 /* Multi choice styles*/
