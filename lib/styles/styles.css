@@ -155,6 +155,10 @@
 .whppt-form-label-error--active {
   display: block;
 }
+.whppt-form__success-message {
+  margin: 0 10px;
+  color: inherit;
+}
 
 /* Multi choice styles*/
 .whppt-form-multiple-choice {

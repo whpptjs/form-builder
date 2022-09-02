@@ -60,6 +60,9 @@
         </div>
 
         <div v-if="inEditor" v-custom-form="content" class="whppt-form__form-config">Edit form config</div>
+        <div v-if="inEditor" v-whppt-text="content" data-property="successMessage" class="whppt-form__form-config">
+          Edit Success Message
+        </div>
         <div
           v-if="inEditor"
           v-form-success-email="{ content, formFields: content.fields }"
@@ -87,6 +90,16 @@
           >
             {{ content.secondaryLink.text || 'Secondary Link' }}
           </whppt-link>
+          <div
+            v-if="success"
+            v-whppt-text="content"
+            data-property="successMessage"
+            class="whppt-form__success-message ml-8"
+            :class="{ 'in-editor': inEditor }"
+            @click="submit"
+          >
+            <span>{{ content.successMessage }}</span>
+          </div>
         </div>
       </div>
       <div class="whppt-form__gutter" />
@@ -197,7 +210,6 @@ export default {
         })
         .then(() => {
           this.loading = false;
-          this.success = true;
           this.clearForm();
 
           if (process.client && this.content.trackInGA) {
@@ -207,6 +219,7 @@ export default {
               formName: this.content.identifier,
             });
           }
+          this.success = true;
         })
         .catch(err => {
           this.loading = false;
