@@ -30,7 +30,7 @@ import { detect } from 'detect-browser';
 import FieldLabel from '@whppt/form-builder/lib/components/Form/Fields/FieldLabel';
 let VDatePicker;
 
-if (process.client) VDatePicker = require('v-calendar-ie11/lib/v-calendar.umd.js').DatePicker;
+if (process.client) VDatePicker = require('v-calendar/lib/components/date-picker.umd');
 
 export default {
   name: 'FormDateField',
