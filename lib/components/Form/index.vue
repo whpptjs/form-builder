@@ -18,44 +18,19 @@
         >
           Manage fields
         </div>
+        <!-- :clear-recaptcha="clearRecaptcha" -->
         <form-fields
           :form-values="formValues"
           :fields="content.fields"
           :validations="$v"
-          :clear-recaptcha="clearRecaptcha"
           @field-updated="updateField"
           :disable-editing="false"
+          ref="formFields"
         />
-        <!-- <div
-          v-whppt-list="{ data: content, addNew }"
-          data-property="fields"
-          :class="{ 'in-editor': inEditor }"
-          class="whppt-form__fields"
-        >
-          <div
-            v-for="(field, index) in visibleFields"
-            :key="index"
-            :class="
-              field.halfWidth || field.type === 'checkbox' || field.type === 'multipleChoice'
-                ? 'whppt-form__field-width-half'
-                : 'whppt-form__field-width-full'
-            "
-          >
-            <div>
-              <div v-if="inEditor && !field.name">Missing field name</div>
-              <component
-                :is="getComponent(field.type)"
-                :field="field"
-                :value="formValues[field.name]"
-                :show-error="(field.name && $v.formValues[field.name].$error) || false"
-                :validations="$v && $v.formValues && $v.formValues[field.name]"
-                @field-updated="updateField"
-              />
-            </div>
-          </div>
-        </div> -->
         <div v-if="error" class="whppt-form__validation">
-          <span class="whppt-form__validation--error">{{ error.response.data.error.message || error.message }}</span>
+          <span class="whppt-form__validation--error">{{
+            error?.response?.data?.error?.message || error.message
+          }}</span>
           <div v-for="e in error.validationErrors" :key="e">{{ e }}</div>
         </div>
 
@@ -130,7 +105,7 @@ export default {
     success: false,
     loading: false,
     error: undefined,
-    clearRecaptcha: false,
+    // clearRecaptcha: false,
   }),
   computed: {
     ...mapState('whppt/editor', ['activeMenuItem']),
@@ -181,13 +156,14 @@ export default {
       this.$set(this.formValues, event.name, event.value);
       this.success = false;
     },
-    verifyRecaptcha(response) {
-      this.formValues.recaptcha = response;
-    },
+    // verifyRecaptcha(response) {
+    //   this.formValues.recaptcha = response;
+    // },
     submit() {
       if (this.inEditor) return;
 
       this.$v.$touch();
+      console.log('🚀 ~ file: index.vue ~ line 165 ~ submit ~ this.$v.$invalid', this.$v);
       if (this.$v.$invalid) return;
 
       this.error = undefined;
@@ -230,7 +206,7 @@ export default {
     clearForm() {
       this.$v.$reset();
       this.formValues = {};
-      this.clearRecaptcha = !this.clearRecaptcha;
+      this.$refs.formFields.resetRecaptcha();
       this.success = false;
     },
   },
@@ -239,12 +215,13 @@ export default {
 
     forEach(this.content.fields, field => {
       const restrictions = {};
-      if (field.required && field.type !== 'checkbox') restrictions.required = required;
+      if (field.required && field.type !== 'checkbox' && field.type !== 'captcha') restrictions.required = required;
       if (field.type === 'email' && field.required) restrictions.email = email;
       if (field.type === 'checkbox' && field.required)
         restrictions.checked = val => {
           return val === true;
         };
+      if (field.type === 'captcha') restrictions.required = required;
 
       if (Object.keys(restrictions).length) validations.formValues[field.name] = restrictions;
     });

@@ -18,8 +18,8 @@ export default {
     field: { type: Object, default: () => ({}) },
     validations: { type: Object, default: () => ({}) },
     id: { type: String, default: '' },
-    // showError: { type: Boolean, default: false },
-    // errorMessage: { type: String, default: '' },
+    // TODO: Shift the logic for validation messages to the fields by passing fieldErrorMessage. See email field as an example
+    fieldErrorMessage: { type: String, default: '' },
   },
   computed: {
     ...mapState('whppt/editor', ['activeMenuItem', 'inEditor']),
@@ -36,9 +36,12 @@ export default {
       return typeof this.field.required === 'function' ? this.field.required() : this.field.required;
     },
     showError() {
+      if (this.fieldErrorMessage) return true;
       return this.validations.$error || false;
     },
     errorMessage() {
+      if (this.fieldErrorMessage) return this.fieldErrorMessage;
+
       if (!this.field.required) return '';
       if (!has(this.field, 'message')) this.getFieldBasedMessages();
       const msg = typeof this.field.message === 'function' ? this.field.message(this.validations) : this.field.message;

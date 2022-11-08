@@ -10,8 +10,6 @@
       "
     >
       <div>
-        <!-- {{ field.name && validations.formValues[field.name] }}
-        {{ field }} -->
         <component
           :is="getComponent(field.type)"
           :field="field"
@@ -21,9 +19,9 @@
             (field.name && validations.formValues[field.name] && validations.formValues[field.name].$error) || false
           "
           :validations="validations && validations.formValues && validations.formValues[field.name]"
-          :clear-recaptcha="clearRecaptcha"
           @field-updated="$emit('field-updated', $event)"
           :class="{ 'whppt-form-field--error': showError }"
+          :ref="`field_${field.name}`"
         />
         <slot :field="field" />
       </div>
@@ -33,6 +31,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import { map, each } from 'lodash';
 
 import FormCheckbox from './Fields/Checkbox';
 import FormEmailField from './Fields/EmailField';
@@ -61,7 +60,6 @@ export default {
     formValues: { type: Object, default: () => ({}) },
     fields: { type: Array, default: () => [] },
     validations: { type: Object, default: () => ({}) },
-    clearRecaptcha: { type: Boolean, default: false },
     disableEditing: { type: Boolean, default: true },
   },
   computed: {
@@ -74,6 +72,13 @@ export default {
     },
   },
   methods: {
+    resetRecaptcha() {
+      const captchaFields = this.fields.filter(f => f.type === 'captcha');
+      const captchaRefs = map(captchaFields, field => this.$refs[`field_${field.name}`]);
+      each(captchaRefs, captcha => {
+        captcha[0].resetCaptcha();
+      });
+    },
     getComponent(type) {
       switch (type) {
         case 'text':
