@@ -28,9 +28,7 @@
           ref="formFields"
         />
         <div v-if="error" class="whppt-form__validation">
-          <span class="whppt-form__validation--error">{{
-            error?.response?.data?.error?.message || error.message
-          }}</span>
+          <span class="whppt-form__validation--error">{{ errorMessage }}</span>
           <div v-for="e in error.validationErrors" :key="e">{{ e }}</div>
         </div>
 
@@ -134,6 +132,9 @@ export default {
 
       return '';
     },
+    errorMessage() {
+      return this.error?.response?.data?.error?.message || this.error.message;
+    },
   },
   methods: {
     ...mapActions('whppt/editor', ['pushSelectedComponentState']),
@@ -163,7 +164,6 @@ export default {
       if (this.inEditor) return;
 
       this.$v.$touch();
-      console.log('🚀 ~ file: index.vue ~ line 165 ~ submit ~ this.$v.$invalid', this.$v);
       if (this.$v.$invalid) return;
 
       this.error = undefined;
