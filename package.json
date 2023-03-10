@@ -1,6 +1,6 @@
 {
   "name": "@whppt/form-builder",
-  "version": "2.3.4",
+  "version": "2.3.5",
   "description": "Whppt form builder modules for use with the nuxt framework",
   "repository": "https://github.com/whpptjs/form-builder",
   "license": "MIT",
@@ -40,6 +40,8 @@
     "@babel/preset-env": "latest",
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
+    "@nuxtjs/dotenv": "^1.4.1",
+    "@nuxtjs/eslint-module": "^4.0.1",
     "@nuxtjs/module-test-utils": "latest",
     "babel-eslint": "^10.1.0",
     "babel-jest": "latest",
