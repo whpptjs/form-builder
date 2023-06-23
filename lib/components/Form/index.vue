@@ -60,7 +60,7 @@
         </div>
 
         <div v-if="inEditor" v-custom-form="content" class="whppt-form__form-config">Edit form config</div>
-        <div v-if="inEditor" v-whppt-text="content" data-property="successMessage" class="whppt-form__form-config">
+        <div v-if="inEditor" v-whppt-rich-text="content" data-property="successMessage" class="whppt-form__form-config">
           Edit Success Message
         </div>
         <div
@@ -92,6 +92,15 @@
           </whppt-link>
           <div
             v-if="success"
+            v-whppt-rich-text="content"
+            data-property="successMessage"
+            class="whppt-form__success-message ml-8"
+            :class="{ 'in-editor': inEditor }"
+            v-html="content.successMessage && content.successMessage !== '<p></p>' ? content.successMessage : 'Success'"
+            @click="submit"
+          ></div>
+          <!-- <div
+            v-if="success"
             v-whppt-text="content"
             data-property="successMessage"
             class="whppt-form__success-message ml-8"
@@ -99,7 +108,7 @@
             @click="submit"
           >
             <span>{{ content.successMessage }}</span>
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="whppt-form__gutter" />
